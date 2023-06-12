@@ -1,0 +1,8 @@
+@include('bootstrap_sections.head')
+@include('bootstrap_sections.top_bar')
+@include('bootstrap_sections.sidebar')
+@include('bootstrap_sections.nav')
+@include('bootstrap_sections.header')
+@include('bootstrap_sections.featured')
+@include('bootstrap_sections.products')
+@include('bootstrap_sections.footer')
