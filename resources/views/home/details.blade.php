@@ -1,30 +1,28 @@
-@include('bootstrap_sections.headForOtherPage')
+@extends('bootstrap_sections.head')
+@section('title','Eshoper')
+@section('links')
+<link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../../css/style.css" rel="stylesheet">
+
+    @endsection
+
         @include('bootstrap_sections.top_bar')
         @include('bootstrap_sections.nav')
         <!-- Shop Detail Start -->
-        <div class="container-fluid py-5">
-            <div class="row px-xl-5">
-                
-                <div class="col-lg-5 pb-5">
-                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner border">
-    <img class="w-100 h-100" src="{{ asset('product/'.$details->image) }}" alt="">
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col-lg-7 pb-5">
-                    
-                    <h3 class="font-weight-semi-bold mb-4">{{ $details->price }}</h3>
-                    <p class="mb-4">{{ $details->text }}</p>
-                    <div class="d-flex align-items-center mb-4 pt-2">
-                        
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                    </div>
-                    
-                </div>
-            </div>
+       <x-detailst :details="$details"></x-detailst>
+
             <!-- Footer End -->
             <!-- Back to Top -->
             <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
@@ -38,5 +36,5 @@
             <script src="mail/contact.js"></script>
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
-        </body>
-    </html>
+            
+@include('bootstrap_sections.footer')
