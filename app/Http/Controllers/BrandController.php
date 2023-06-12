@@ -26,7 +26,7 @@ class BrandController extends Controller
     }
 
     public function update(Request $request, $id){
-        $edit_brand = Category::find($id);
+        $edit_brand = Brand::find($id);
         $edit_brand->brand_name = $request->input('brand_name');
          $edit_brand->update();
         return redirect()->back()->with('message','Update successfully record'); 
@@ -34,7 +34,7 @@ class BrandController extends Controller
 
     public function edit($id){
         $brand = Brand::find($id);
-        return view('admin/categorys.edit',compact('brand'));
+        return view('admin/brands.edit',compact('brand'));
     }
 
     public function delete($id){

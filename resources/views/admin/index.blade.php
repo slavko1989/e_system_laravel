@@ -1,5 +1,1 @@
-@include('admin/bootstrap_sections.head')
-@include('admin/bootstrap_sections.top_container')
-@include('admin/bootstrap_sections.sidebar')
-@include('admin/bootstrap_sections.dashboard')
-@include('admin/bootstrap_sections.footer')
+@extends('admin/bootstrap_sections.main')

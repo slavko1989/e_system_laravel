@@ -1,55 +1,28 @@
-@include('admin/bootstrap_sections.head')
-@include('admin/bootstrap_sections.top_container')
-@include('admin/bootstrap_sections.sidebar')
-@include('admin/bootstrap_sections.dashboard')
-<div class="w3-panel">
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-third">
-         @if(session()->has('message'))
-        <p style="color: red;font-weight: bolder;">{{ session()->get('message') }}</p>
-  @endif
-      </div>
-      <div class="w3-twothird">
-        <h5>Table for brands</h5>
-        <div class="form-group">
-        	<form method="post" action="{{ url('brands/create') }}">
-        		@csrf
-    		<label for="brand_name">Brand name:</label>
-    		<input type="text" class="form-control" value="{{ old('brand_name') }}" placeholder="Enter brand" id="brand" name="brand_name">
-    		<button type="submit" class="btn btn-primary">Add</button>
-  		</div>
-      </div>
-    </div>
-  </div>
+@extends('admin.bootstrap_sections.head')
+@section('title','Admin Dashboard')
+@section('links')
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+@endsection
+
+@include('admin.bootstrap_sections.top_container')
+@include('admin.bootstrap_sections.sidebar')
+@include('admin.bootstrap_sections.dashboard')
+
+<x-brand_insert></x-brand_insert>
   <hr>
 
-  <div class="container">
-  <h2>Listing all brands</h2>
-              
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Brand name</th>
-        <th>Actions</th>
-
-      </tr>
-    </thead>
-    <tbody>
-    	@foreach($brand as $brand)
-      <tr>
-      	<td>{{ $brand->brand_name }}</td>
-      	<td>
-      		<a href="edit/{{ $brand->id }}"><span class="glyphicon glyphicon-pencil"></span></a> | 
-      		<a href="create/{{ $brand->id }}"><span class="glyphicon glyphicon-remove"></span></a>
-      	</td>
-
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
-</div>
-
+ <x-brands_listings :brand='$brand'></x-brands_listings>
   
 
   
-@include('admin/bootstrap_sections.footer')
+@include('admin.bootstrap_sections.footer')

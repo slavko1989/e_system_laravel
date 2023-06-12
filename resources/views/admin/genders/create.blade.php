@@ -1,55 +1,29 @@
-@include('admin/bootstrap_sections.head')
-@include('admin/bootstrap_sections.top_container')
-@include('admin/bootstrap_sections.sidebar')
-@include('admin/bootstrap_sections.dashboard')
-<div class="w3-panel">
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-third">
-         @if(session()->has('message'))
-        <p style="color: red;font-weight: bolder;">{{ session()->get('message') }}</p>
-  @endif
-      </div>
-      <div class="w3-twothird">
-        <h5>Table for genders</h5>
-        <div class="form-group">
-        	<form method="post" action="{{ url('genders/create') }}">
-        		@csrf
-    		<label for="gender_name">Gender name:</label>
-    		<input type="text" class="form-control" value="{{ old('gender_name') }}" placeholder="Enter gender" id="gender" name="gender_name">
-    		<button type="submit" class="btn btn-primary">Add</button>
-  		</div>
-      </div>
-    </div>
-  </div>
+@extends('admin.bootstrap_sections.head')
+@section('title','Admin Dashboard')
+@section('links')
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+@endsection
+
+@include('admin.bootstrap_sections.top_container')
+@include('admin.bootstrap_sections.sidebar')
+@include('admin.bootstrap_sections.dashboard')
+
+<x-gender_insert></x-gender_insert>
+
   <hr>
 
-  <div class="container">
-  <h2>Listing all genders</h2>
-              
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Gender name</th>
-        <th>Actions</th>
-
-      </tr>
-    </thead>
-    <tbody>
-    	@foreach($gender as $gender)
-      <tr>
-      	<td>{{ $gender->gender_name }}</td>
-      	<td>
-      		<a href="edit/{{ $gender->id }}"><span class="glyphicon glyphicon-pencil"></span></a> | 
-      		<a href="create/{{ $gender->id }}"><span class="glyphicon glyphicon-remove"></span></a>
-      	</td>
-
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
-</div>
 
   
-
+<x-genders_listings :gender="$gender"></x-genders_listings>
   
-@include('admin/bootstrap_sections.footer')
+@include('admin.bootstrap_sections.footer')
