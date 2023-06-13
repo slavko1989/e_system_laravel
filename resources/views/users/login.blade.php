@@ -28,7 +28,7 @@
             <h3 class="mb-5">Sign in</h3>
             @if(session()->has('message'))
                     <p style="color: red;font-weight: bolder;">{{ session()->get('message') }}</p>
-                  @endif
+            @endif
               <form action="{{ url('users/login') }}" method="post">
             @csrf     
             <div class="form-outline mb-4">
