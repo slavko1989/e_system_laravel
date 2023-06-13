@@ -29,9 +29,10 @@ use App\Http\Controllers\OrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Auth::routes(['verify' => true]);
+//Auth::routes();
 
-
-Route::get('/admin/index',[AdminController::class,'index']);
+Route::get('/admin/index',[AdminController::class,'index'])->middleware(['admin']);
 
 Route::controller(HomeController::class)->group(function() {
     Route::get('/','index');
@@ -45,7 +46,7 @@ Route::controller(HomeController::class)->group(function() {
 });
 
 
-Route::controller(CategoryController::class)->group(function() {
+Route::controller(CategoryController::class)->middleware(['admin'])->group(function() {
     Route::get('/categorys/create','create');
     Route::post('/categorys/create','store');
     Route::get('/categorys/create/{id}','delete');
@@ -53,7 +54,7 @@ Route::controller(CategoryController::class)->group(function() {
     Route::post('/categorys/update/{id}','update');
 });
 
-Route::controller(BrandController::class)->group(function() {
+Route::controller(BrandController::class)->middleware(['admin'])->group(function() {
     Route::get('/brands/create','create');
     Route::post('/brands/create','store');
     Route::get('/brands/create/{id}','delete');
@@ -61,7 +62,7 @@ Route::controller(BrandController::class)->group(function() {
     Route::post('/brands/update/{id}','update');
 });
 
-Route::controller(GenderController::class)->group(function() {
+Route::controller(GenderController::class)->middleware(['admin'])->group(function() {
     Route::get('/genders/create','create');
     Route::post('/genders/create','store');
     Route::get('/genders/create/{id}','delete');
@@ -69,7 +70,7 @@ Route::controller(GenderController::class)->group(function() {
     Route::post('/genders/update/{id}','update');
 });
 
-Route::controller(ProductController::class)->group(function() {
+Route::controller(ProductController::class)->middleware(['admin'])->group(function() {
     Route::get('/products/create','create');
     Route::post('/products/create','store');
     Route::get('/products/create/{id}','delete');

@@ -16,7 +16,7 @@
   </div>
   <hr>
   <div class="w3-container">
-    <h5>Dashboard</h5>
+    <h5><a href="{{ url('admin/index') }}">Dashboard</a></h5>
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
