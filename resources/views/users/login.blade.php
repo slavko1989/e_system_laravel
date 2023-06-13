@@ -29,25 +29,13 @@
             @if(session()->has('message'))
                     <p style="color: red;font-weight: bolder;">{{ session()->get('message') }}</p>
             @endif
-              <form action="{{ url('users/login') }}" method="post">
-            @csrf     
-            <div class="form-outline mb-4">
-              <input type="email" id="typeEmailX-2" class="form-control form-control-lg" name="email">
-              <label class="form-label" for="typeEmailX-2">Email</label>
-              @error('email')
-                    <p style="color: black;">{{ $message }}</p>
-                  @enderror
-            </div>
+            @if(session()->has('status'))
+                    <p style="color: red;font-weight: bolder;">{{ session()->get('status') }}</p>
+            @endif
+           
 
-            <div class="form-outline mb-4">
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password">
-              <label class="form-label" for="typePasswordX-2">Password</label>
-            </div>
+            <x-login_form></x-login_form>
 
-            
-
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-          </form>
             <hr class="my-4">
 
             <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"

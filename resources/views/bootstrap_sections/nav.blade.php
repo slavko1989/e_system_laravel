@@ -18,6 +18,7 @@
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Your account</a>
                                     <a href="checkout.html" class="dropdown-item">Logout</a>
+                                    <a href="{{ url('users/order') }}" class="dropdown-item">Order</a>
                                 </div>
                             </div>
                         </div>
