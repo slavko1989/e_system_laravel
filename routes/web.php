@@ -29,10 +29,10 @@ use App\Http\Controllers\OrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Auth::routes(['verify' => true]);
-//Auth::routes();
+
 
 Route::get('/admin/index',[AdminController::class,'index'])->middleware(['admin']);
+Route::get('/orders/all_orders',[AdminController::class,'all_orders'])->middleware(['admin']);
 
 Route::controller(HomeController::class)->group(function() {
     Route::get('/','index');
@@ -86,13 +86,13 @@ Route::controller(UserController::class)->group(function() {
     Route::get('/users/logout','logout');
 });
 
-Route::controller(CartController::class)->group(function() {
+Route::controller(CartController::class)->middleware(['user'])->group(function() {
     Route::get('/users/cart','cart');
     Route::post('/users/cart/{id}','add_to_cart'); 
     Route::get('/users/cart/{id}','delete');
 });
 
-Route::controller(OrderController::class)->group(function() {
+Route::controller(OrderController::class)->middleware(['user'])->group(function() {
     Route::get('/users/order','order');
     Route::post('/users/order/{id}','add_to_order'); 
 });

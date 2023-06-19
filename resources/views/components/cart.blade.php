@@ -5,6 +5,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Products</th>
+                            <th>Product id</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total</th>
@@ -17,6 +18,7 @@
                         <tr>
                             <td>{{ $cart->id }}</td>
                             <td class="align-middle"><img src="{{ asset('product/'.$cart->image) }}" alt="" style="width: 50px;"></td>
+                            <td>{{ $cart->product_id }}</td>
                             <td class="align-middle">
                                 @if($cart->new_price!=null)
                                     {{ $cart->new_price  }}

@@ -21,6 +21,7 @@
         @include('bootstrap_sections.top_bar')
         @include('bootstrap_sections.nav')
         <!-- Shop Detail Start -->
+        
        <x-detailst :details="$details"></x-detailst>
 
             <!-- Footer End -->

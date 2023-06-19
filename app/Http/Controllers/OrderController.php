@@ -18,7 +18,15 @@ class OrderController extends Controller
         public function order(){
        
         $id = Auth::user()->id;
-        $order = order::where('user_id','=',$id)->get();
+        //$order = order::where('user_id','=',$id)->get();
+
+        $order = Order::join('products', 'products.id', '=', 'orders.product_id')
+       ->join('users', 'users.id', '=', 'orders.user_id')
+       ->join('carts', 'carts.id', '=', 'orders.cart_id')
+       ->select('orders.user_id','orders.cart_id','orders.product_id',
+        'products.title','products.image','users.address','users.phone','users.name'
+            ,'products.price','products.new_price','carts.quantity','orders.payment_status','orders.delivery_status')
+       ->where('orders.user_id','=',$id)->get();
         
         return view('users/order',compact('order'));
       
@@ -29,29 +37,19 @@ class OrderController extends Controller
         if(Auth::id()){
             $user = Auth::user();
             $product = product::find($id);
-            $user_cart = Cart::where('user_id','=',$user->id)->get();
+            $id = Cart::where('id','=',$id)->get();
+            $user_cart = cart::find($id);
 
             $order = new order;
             foreach($user_cart as $cart){
 
             $order->cart_id = $cart->id;
-            $order->user_id = $cart->user_id;
-            $order->product_id = $cart->product_id;
-            $order->payment_status="cash on delivery";
-            $order->delivery_status="processing";
+            $order->user_id = $user->id;
+            $order->product_id = $product->id;
+            $order->payment_status=$request->payment_status;
+            $order->delivery_status=$request->delivery_status;
 
-            $order->name = $user->name;
-            $order->email = $user->email;
-            $order->address = $user->address;
-            $order->phone = $user->phone;
-
-            $order->image = $product->image;
-            $order->title = $product->title;
-            $order->text = $product->text;
-            $order->price = $product->price;
-            $order->new_price = $product->new_price;
-            $order->quantity = $cart->quantity;
-
+        
             $order->save();
         
 
@@ -63,6 +61,6 @@ class OrderController extends Controller
         }else{
             return redirect('users/login');
         }
-    }
+   }
 
 }

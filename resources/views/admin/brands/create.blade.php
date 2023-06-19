@@ -24,5 +24,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
  <x-brands_listings :brand='$brand'></x-brands_listings>
   
 
+
+
+
   
 @include('admin.bootstrap_sections.footer')

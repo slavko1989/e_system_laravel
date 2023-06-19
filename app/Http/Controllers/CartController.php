@@ -17,7 +17,7 @@ class CartController extends Controller
     
 
     public function cart(){
-       $id = Auth::user()->id;
+       $id = optional(Auth::user())->id;
         $cart = Cart::join('users', 'users.id', '=', 'carts.user_id')
        ->join('products', 'products.id', '=', 'carts.product_id')
        ->select('carts.quantity','carts.id','products.price','products.new_price','products.image','carts.product_id')
