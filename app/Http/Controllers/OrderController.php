@@ -35,17 +35,16 @@ class OrderController extends Controller
       public function add_to_order(Request $request, $id){
 
         if(Auth::id()){
-            $user = Auth::user();
-            $product = product::find($id);
-            $id = Cart::where('id','=',$id)->get();
-            $user_cart = cart::find($id);
+            //$id = Auth::user()->id;
+            //$product = product::find($id);
+            $user_cart = Cart::where('user_id','=',$id)->get();
 
             $order = new order;
             foreach($user_cart as $cart){
 
             $order->cart_id = $cart->id;
-            $order->user_id = $user->id;
-            $order->product_id = $product->id;
+            $order->user_id = $cart->Auth::user()->id;
+            $order->product_id = $cart->id;
             $order->payment_status=$request->payment_status;
             $order->delivery_status=$request->delivery_status;
 
