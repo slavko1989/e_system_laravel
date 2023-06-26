@@ -13,6 +13,7 @@
         <th>Gender</th>
         <th>Price</th>
         <th>New price</th>
+        <th>Quantity</th>
 
         <th>Actions</th>
 
@@ -30,6 +31,7 @@
         <td>{{ $product->gender_name }}</td>
         <td>{{ $product->price }}</td>
         <td>{{ $product->new_price }}</td>
+        <td>{{ $product->quantity }}</td>
         <td>
           <a href="edit/{{ $product->id }}"><span class="glyphicon glyphicon-pencil"></span></a> | 
           <a href="create/{{ $product->id }}"><span class="glyphicon glyphicon-remove"></span></a>

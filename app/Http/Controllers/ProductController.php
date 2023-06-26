@@ -19,7 +19,7 @@ class ProductController extends Controller
        $product = Product::join('categories', 'categories.id', '=', 'products.cat_id')
        ->join('brands', 'brands.id', '=', 'products.brand_id')
        ->join('genders', 'genders.id', '=', 'products.gender_id')
-       ->get(['products.title','products.id',
+       ->get(['products.title','products.id','products.quantity',
         'products.text',
         'products.image',
         'products.price',
@@ -42,7 +42,8 @@ class ProductController extends Controller
             'image'=>'required',
             'cat_id'=>'required',
             'brand_id'=>'required',
-            'gender_id'=>'required'
+            'gender_id'=>'required',
+            'quantity'=>'required'
         ]);
         $product = new Product;
         $image = $request->image;
@@ -59,6 +60,7 @@ class ProductController extends Controller
         $product->cat_id = $request->cat_id;
         $product->brand_id = $request->brand_id;
         $product->gender_id = $request->gender_id;
+        $product->quantity = $request->quantity;
         $product->save();
         return redirect()->back()->with('message','Product created successfully');
     }
@@ -80,8 +82,9 @@ class ProductController extends Controller
         $edit_product->cat_id = $request->input('cat_id');
         $edit_product->brand_id = $request->input('brand_id');
         $edit_product->gender_id = $request->input('gender_id');
+        $edit_product->quantity = $request->input('quantity');
         $edit_product->update();
-        return redirect()->back()->with('message','Product created successfully'); 
+        return redirect()->back()->with('message','Product updated successfully'); 
     }
 
     public function edit($id){

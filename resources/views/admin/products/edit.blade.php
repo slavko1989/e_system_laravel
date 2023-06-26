@@ -71,6 +71,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           <option value="{{ $gender->id }}">{{ $gender->gender_name  }}</option>
           @endforeach()        
         </select><br>
+         <label for="cat_name">Quantity:</label>
+        <input type="text" class="form-control" placeholder="Enter quantity" id="category" name="quantity" value="{{ $edit_product->quantity }}">
+        @error('quantity')
+            <p style="color: black;">{{ $message }}</p>
+        @enderror
         <button type="submit" class="btn btn-primary">Add</button>
       </div>
       </div>
