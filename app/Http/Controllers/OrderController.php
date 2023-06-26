@@ -18,14 +18,12 @@ class OrderController extends Controller
         public function order(){
        
         $id = Auth::user()->id;
-        //$order = order::where('user_id','=',$id)->get();
 
         $order = Order::join('products', 'products.id', '=', 'orders.product_id')
        ->join('users', 'users.id', '=', 'orders.user_id')
-       ->join('carts', 'carts.id', '=', 'orders.cart_id')
        ->select('orders.user_id','orders.product_id',
         'products.title','products.image','users.address','users.phone','users.name'
-            ,'products.price','products.new_price','carts.quantity','orders.payment_status','orders.delivery_status')
+            ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status')
        ->where('orders.user_id','=',$id)->get();
         
         return view('users/order',compact('order'));

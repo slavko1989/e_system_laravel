@@ -25,7 +25,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Products</th>
+                            <th>Users</th>
                             <th>Address</th>
                             <th>Phone</th>
                             <th>Price</th>
@@ -41,7 +41,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             <td>1</td>
                             <td>{{ $orders->title }}</td>
                             <td>{{ $orders->name }}</td>
-                            <td>{{ $orders->quantity }}</td>
+                            <td>{{ $orders->address }}</td>
+                            <td>{{ $orders->phone }}</td>
+                            <td>{{ $orders->price }}</td>
+                            <td>{{ $orders->payment_status }}</td>
+                            <td>{{ $orders->delivery_status }}</td>
                             
                   </tr>
                      @endforeach

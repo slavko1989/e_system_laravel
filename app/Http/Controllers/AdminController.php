@@ -24,17 +24,11 @@ class AdminController extends Controller
     }
 
     public function all_orders(){
-         /*$order = Order::join('products', 'products.id', '=', 'orders.product_id')
+       $order = Order::join('products', 'products.id', '=', 'orders.product_id')
        ->join('users', 'users.id', '=', 'orders.user_id')
-       ->join('carts', 'carts.id', '=', 'orders.cart_id')
-       ->get(['orders.user_id','orders.cart_id','orders.product_id',
+       ->select('orders.user_id','orders.product_id',
         'products.title','products.image','users.address','users.phone','users.name'
-            ,'products.price','products.new_price','carts.quantity','orders.payment_status','orders.delivery_status']);*/
-          $order = Order::join('products', 'products.id', '=', 'orders.product_id')
-          ->join('users', 'users.id', '=', 'orders.user_id')
-          ->join('carts', 'carts.id', '=', 'orders.cart_id')
-          ->get(['products.title','users.name','carts.quantity']);  
-       //$order = order::all();
+            ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status')->get();
         return view('admin/orders/all_orders',compact('order'));
     }
 }

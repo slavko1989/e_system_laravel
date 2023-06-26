@@ -20,7 +20,7 @@ class CartController extends Controller
        $id = optional(Auth::user())->id;
         $cart = Cart::join('users', 'users.id', '=', 'carts.user_id')
        ->join('products', 'products.id', '=', 'carts.product_id')
-       ->select('carts.quantity','carts.id','products.price','products.new_price','products.image','carts.product_id')
+       ->select('products.quantity','carts.id','products.price','products.new_price','products.image','carts.product_id')
        ->where('carts.user_id','=',$id)->get();
 
         return view('users.cart',compact('cart'));
@@ -33,7 +33,7 @@ class CartController extends Controller
             $cart = new Cart;
             $cart->user_id = $user->id;
             $cart->product_id = $product->id;
-            $cart->quantity = $request->quantity;
+            //$cart->quantity = $request->quantity;
             $cart->save();
         return redirect('users/cart')->with('message','Product created successfully');
         }else{
