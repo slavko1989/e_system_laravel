@@ -22,10 +22,10 @@ class OrderController extends Controller
 
         $order = Order::join('products', 'products.id', '=', 'orders.product_id')
        ->join('users', 'users.id', '=', 'orders.user_id')
-       ->join('carts', 'carts.id', '=', 'orders.cart_id')
-       ->select('orders.user_id','orders.cart_id','orders.product_id',
+       //->join('carts', 'carts.id', '=', 'orders.cart_id')
+       ->select('orders.user_id','orders.product_id',
         'products.title','products.image','users.address','users.phone','users.name'
-            ,'products.price','products.new_price','carts.quantity','orders.payment_status','orders.delivery_status')
+            ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status')
        ->where('orders.user_id','=',$id)->get();
         
         return view('users/order',compact('order'));
@@ -35,16 +35,16 @@ class OrderController extends Controller
       public function add_to_order(Request $request, $id){
 
         if(Auth::id()){
-            //$id = Auth::user()->id;
-            //$product = product::find($id);
+            $id = Auth::user()->id;
+            $product = product::find($id);
             $user_cart = Cart::where('user_id','=',$id)->get();
 
             $order = new order;
             foreach($user_cart as $cart){
 
             $order->cart_id = $cart->id;
-            $order->user_id = $cart->Auth::user()->id;
-            $order->product_id = $cart->id;
+            $order->user_id = $id;
+            $order->product_id = $cart->product_id;
             $order->payment_status=$request->payment_status;
             $order->delivery_status=$request->delivery_status;
 
