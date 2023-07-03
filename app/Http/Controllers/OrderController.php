@@ -21,7 +21,8 @@ class OrderController extends Controller
 
         $order = Order::join('products', 'products.id', '=', 'orders.product_id')
        ->join('users', 'users.id', '=', 'orders.user_id')
-       ->select('orders.user_id','orders.product_id',
+       ->join('carts','carts.id','=', 'orders.cart_id')
+       ->select('orders.user_id','orders.product_id','orders.cart_id','carts.qty',
         'products.title','products.image','users.address','users.phone','users.name'
             ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status')
        ->where('orders.user_id','=',$id)->get();
@@ -36,7 +37,7 @@ class OrderController extends Controller
             $id = Auth::user()->id;
             $product = product::find($id);
             $user_cart = Cart::where('user_id','=',$id)->get();
-
+            //$cart = cart::find($id);
             $order = new order;
             foreach($user_cart as $cart){
 
@@ -50,10 +51,10 @@ class OrderController extends Controller
             $order->save();
         
 
-            $del_cart_id = $cart->id;
+           /* $del_cart_id = $cart->id;
             $dell_all_from_cart = Cart::where('id',$del_cart_id)->firstOrFail();
-            $dell_all_from_cart->delete();        
-        }
+            $dell_all_from_cart->delete();  */      
+       }
         return redirect('users/order')->with('message','Product created successfully');
         }else{
             return redirect('users/login');

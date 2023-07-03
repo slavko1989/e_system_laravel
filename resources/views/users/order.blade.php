@@ -66,9 +66,9 @@
                       		</td>
                             <td class="align-middle">
                                  @if($order->new_price!=null)
-                                    {{ $order->new_price * $order->quantity  }}
+                                    {{ $order->new_price * $order->qty  }}
                                 @else 
-                                    {{ $order->price * $order->quantity  }}
+                                    {{ $order->price * $order->qty  }}
                                 @endif
                             </td>
                             <td class="align-middle">
@@ -80,11 +80,11 @@
                   </tr>
                             <?php     
                                 if($order->new_price!=null){
-                                    $sum = array($order->quantity * $order->new_price);
+                                    $sum = array($order->qty * $order->new_price);
                                 $total = array_sum($sum);
                                 @$i += $total;
                                 }else{
-                                    $sum = array($order->quantity * $order->price);
+                                    $sum = array($order->qty * $order->price);
                                 $total = array_sum($sum);
                                 @$i += $total;
                                 }  

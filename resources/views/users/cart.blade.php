@@ -67,24 +67,24 @@
                                 @endif
                                 </td>
                             <td class="align-middle">
-                                {{ $cart->quantity }}
+                                {{ $cart->qty }}
                             </td>
                             <td class="align-middle">
                                 @if($cart->new_price!=null)
-                                    {{ $cart->new_price * $cart->quantity  }}
+                                    {{ $cart->new_price * $cart->qty  }}
                                 @else 
-                                    {{ $cart->price * $cart->quantity  }}
+                                    {{ $cart->price * $cart->qty  }}
                                 @endif</td>
                             <td class="align-middle"><a href="{{ url('users/cart/'. $cart->id) }}" class="btn btn-sm btn-primary">X</a></td>
                         </tr>
 
                           <?php     
                                 if($cart->new_price!=null){
-                                    $sum = array($cart->quantity * $cart->new_price);
+                                    $sum = array($cart->qty * $cart->new_price);
                                 $total = array_sum($sum);
                                 @$i += $total;
                                 }else{
-                                    $sum = array($cart->quantity * $cart->price);
+                                    $sum = array($cart->qty * $cart->price);
                                 $total = array_sum($sum);
                                 @$i += $total;
                                 }  
