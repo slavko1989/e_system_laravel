@@ -20,38 +20,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 <div class="container">
 
-<table class="table table-bordered text-center mb-0">
-                    <thead class="bg-secondary text-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Users</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Price</th>
-                            <th>Payment</th>
-                            <th>Delivery</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        @foreach($order as $orders)
-
-                        <tr>
-
-                            <td>1</td>
-                            <td>{{ $orders->title }}</td>
-                            <td>{{ $orders->name }}</td>
-                            <td>{{ $orders->address }}</td>
-                            <td>{{ $orders->phone }}</td>
-                            <td>{{ $orders->price }}</td>
-                            <td>{{ $orders->payment_status }}</td>
-                            <td>{{ $orders->delivery_status }}</td>
-                            
-                  </tr>
-                     @endforeach
-                    </tbody>
-                </table>
-             
+    <x-all_orders :order="$order"></x-all_orders>
 
 </div>
 

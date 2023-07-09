@@ -37,7 +37,7 @@ class OrderController extends Controller
             $id = Auth::user()->id;
             $product = product::find($id);
             $user_cart = Cart::where('user_id','=',$id)->get();
-            //$cart = cart::find($id);
+            $cart = cart::find($id);
             $order = new order;
             foreach($user_cart as $cart){
 

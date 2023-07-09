@@ -26,9 +26,19 @@ class AdminController extends Controller
     public function all_orders(){
        $order = Order::join('products', 'products.id', '=', 'orders.product_id')
        ->join('users', 'users.id', '=', 'orders.user_id')
+       ->join('carts', 'carts.id', '=', 'orders.cart_id')
        ->select('orders.user_id','orders.product_id',
-        'products.title','products.image','users.address','users.phone','users.name'
-            ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status')->get();
+        'products.title','products.image','users.address','users.phone','users.name','carts.qty'
+            ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status','orders.id')->get();
         return view('admin/orders/all_orders',compact('order'));
+    }
+
+    public function order_status(Request $request,$id){
+
+        $status = Order::find($id);
+        $status->delivery_status = $request->input('delivery_status');
+        $status->update();
+        return redirect()->back();
+        
     }
 }

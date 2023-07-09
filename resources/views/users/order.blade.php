@@ -47,7 +47,6 @@
                             <th>Address</th>
                             <th>Phone</th>
                             <th>Price</th>
-                            <th>Payment</th>
                             <th>Delivery</th>
                         </tr>
                     </thead>
@@ -71,11 +70,25 @@
                                     {{ $order->price * $order->qty  }}
                                 @endif
                             </td>
-                            <td class="align-middle">
-                            	{{ $order->payment_status }}
-                      		</td>
+                            
                         	<td class="align-middle">
-                            	{{ $order->delivery_status }}
+                            	@if($order->delivery_status == 0)
+
+                <button type="button" class="btn btn-info">
+                    In progress
+                </button>
+
+                @elseif($order->delivery_status == 1)
+                <button type="button" class="btn btn-danger">
+                    Cancel
+                </button>
+
+                @elseif($order->delivery_status == 2)
+                <button type="button" class="btn btn-primary">
+                    Shiffted
+                </button>
+
+                @endif
                       		</td>
                   </tr>
                             <?php     

@@ -29,10 +29,12 @@ use App\Http\Controllers\OrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(AdminController::class)->middleware(['admin'])->group(function() {
+    Route::get('/admin/index','index');
+    Route::get('/orders/all_orders','all_orders');
+    Route::post('/orders/all_orders/{id}','order_status');   
+});
 
-
-Route::get('/admin/index',[AdminController::class,'index'])->middleware(['admin']);
-Route::get('/orders/all_orders',[AdminController::class,'all_orders'])->middleware(['admin']);
 
 Route::controller(HomeController::class)->group(function() {
     Route::get('/','index');
