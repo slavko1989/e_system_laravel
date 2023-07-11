@@ -26,7 +26,7 @@ class Product extends Model
         return $this->belongsTo(Gender::class,'gender_id','id');
     }
 
-    public function order_model_prd(){
+ public function order_model_prd(){
         return $this->hasMany(Order::class,'product_id','id');
     }
 }

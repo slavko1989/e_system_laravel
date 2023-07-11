@@ -24,7 +24,7 @@ class AdminController extends Controller
     }
 
     public function all_orders(){
-      /* $order = Order::join('products', 'products.id', '=', 'orders.product_id')
+      /*$order = Order::join('products', 'products.id', '=', 'orders.product_id')
        ->join('users', 'users.id', '=', 'orders.user_id')
        ->join('carts', 'carts.id', '=', 'orders.cart_id')
        ->select('orders.user_id','orders.product_id',

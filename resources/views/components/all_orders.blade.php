@@ -15,20 +15,21 @@
     </tr>
         </thead>
         <tbody class="align-middle">
-            @foreach($order as $orders)
+           @foreach($order as $orders)
             <tr>
-            <td>{{ $orders->title }}</td>
-            <td>{{ $orders->name }}</td>
-            <td>{{ $orders->address }}</td>
-            <td>{{ $orders->phone }}</td>
+            
+            <td>{{ $orders->user_model_order->name }}</td>
+            <td>{{ $orders->user_model_order->address }}</td>
+            <td>{{ $orders->user_model_order->phone }}</td>
             <td>
-                @if($orders->new_price!=null)
-                {{ $orders->new_price * $orders->qty  }}
+                @if($orders->product_model_order->new_price!=null)
+                {{ $orders->product_model_order->new_price * $orders->cart_model_order->qty  }}
                 @else 
-                {{ $orders->price * $orders->qty  }}
+                {{ $orders->product_model_order->price * $orders->cart_model_order->qty  }}
                 @endif
             </td>
-            <td><img class="img-fluid w-100" src="{{ asset('product/'.$orders->image) }}" alt="" style="width: 40px;"></td>
+            <td>{{ $orders->product_model_order->title }}</td>
+            <td><img class="img-fluid w-100" src="{{ asset('product/'.$orders->product_model_order->image) }}" alt="" style="width: 40px;"></td>
             <td>
             @if($orders->delivery_status == 0)
 

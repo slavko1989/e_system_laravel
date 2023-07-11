@@ -23,8 +23,10 @@ public function user_model_order(){
     return $this->belongsTo(User::class,'user_id','id');
 }
 
-public function product_model_order(){
+   public function product_model_order(){
     return $this->belongsTo(Product::class,'product_id','id');
 }
+
+
 
 }
