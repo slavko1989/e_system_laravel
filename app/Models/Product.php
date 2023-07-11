@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Barnd;
 use App\Models\Gender;
+use App\Models\Order;
 
 class Product extends Model
 {
@@ -23,5 +24,9 @@ class Product extends Model
 
     public function gender_model(){
         return $this->belongsTo(Gender::class,'gender_id','id');
+    }
+
+    public function order_model_prd(){
+        return $this->hasMany(Order::class,'product_id','id');
     }
 }
