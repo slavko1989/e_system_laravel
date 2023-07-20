@@ -32,7 +32,8 @@ use App\Http\Controllers\OrderController;
 Route::controller(AdminController::class)->middleware(['admin'])->group(function() {
     Route::get('/admin/index','index');
     Route::get('/orders/all_orders','all_orders');
-    Route::post('/orders/all_orders/{id}','order_status');   
+    Route::post('/orders/all_orders/{id}','order_status');
+    Route::get('/users/all_users','all_users');   
 });
 
 

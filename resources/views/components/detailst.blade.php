@@ -17,7 +17,18 @@
                     <p class="mb-4">{{ $details->text }}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
                         
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                        @if(auth()->user())
+                        <form method="post" action="{{ url('users/cart',$details->id) }}">
+                            @csrf
+                            <input type="hidden" name="id">
+                            <input type="hidden" name="user_id">
+                            <input type="hidden" name="product_id">
+                            <input type="number" min="1" value="1" name="qty" style="width: 80px;">
+                            <input type="submit" name="submit" value="Add to cart" class="btn btn-primary">
+                        </form>
+                        @else
+                        {{ "please login in" }}
+                        @endif
                     </div>
                     
                 </div>

@@ -19,8 +19,9 @@ class AdminController extends Controller
         $totalCategory = Category::count();
         $totalBrands = Brand::count();
         $totalPrice = Product::sum('price');
+        $users = User::all();
 
-        return view('admin.index',compact('totalUsers','totalProducts','totalCategory','totalBrands','totalPrice'));
+        return view('admin.index',compact('totalUsers','totalProducts','totalCategory','totalBrands','totalPrice','users'));
     }
 
     public function all_orders(){
@@ -33,6 +34,11 @@ class AdminController extends Controller
 
             $order = Order::all();
         return view('admin/orders/all_orders',compact('order'));
+    }
+
+       public function all_users(){
+            $users = User::all();
+        return view('admin/users/all_users',compact('users'));
     }
 
     public function order_status(Request $request,$id){

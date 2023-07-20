@@ -4,7 +4,6 @@
         <div class="row bg-secondary py-2 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="{{ url('admin/index') }}">ADMIN</a>
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" href="">Help</a>
                     <span class="text-muted px-2">|</span>
@@ -51,11 +50,8 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
-                    <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
-                <a href="" class="btn border">
+
+                <a href="{{ url('users/cart') }}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge"></span>
                 </a>

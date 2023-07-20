@@ -21,6 +21,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="{{ url('home/details/'. $product->id) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a><br>
+                        @if(auth()->user())
                         <form method="post" action="{{ url('users/cart',$product->id) }}">
                             @csrf
                             <input type="hidden" name="id">
@@ -29,6 +30,9 @@
                             <input type="number" min="1" value="1" name="qty" style="width: 80px;">
                             <input type="submit" name="submit" value="Add to cart" class="btn btn-primary">
                         </form>
+                        @else
+                        {{ "please login in" }}
+                        @endif
                     </div>
                     
                 </div>

@@ -36,6 +36,7 @@
                 <button type="button" class="btn btn-info">
                     In progress
                 </button>
+                
 
                 @elseif($orders->delivery_status == 1)
                 <button type="button" class="btn btn-danger">

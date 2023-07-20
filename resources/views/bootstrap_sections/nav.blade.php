@@ -9,21 +9,20 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             @auth
-                            <a href="/" class="nav-item nav-link active">{{ auth()->user()->name }}</a>
-                            <a href="{{url ('users/logout') }}" class="nav-item nav-link active">logout</a>
+                            <a href="/" class="nav-item nav-link active">Welcome {{ auth()->user()->name }}</a>
+                            
                             <a href="/" class="nav-item nav-link active">Home</a>
 
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Your account</a>
-                                    <a href="checkout.html" class="dropdown-item">Logout</a>
+                                    <a href="{{url ('users/logout') }}" class="dropdown-item">logout</a>
                                     <a href="{{ url('users/order') }}" class="dropdown-item">Order</a>
                                 </div>
                             </div>
                         </div>
                         
-                        <a href="{{ url('users/cart') }}" class="nav-item nav-link active">Cart</a>
                         @else
 
                         <a href="/" class="nav-item nav-link active">Home</a>

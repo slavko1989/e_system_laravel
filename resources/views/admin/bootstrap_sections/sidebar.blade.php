@@ -25,7 +25,7 @@
     <a href="/brands/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>Brand</a>
     <a href="/genders/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>Gender</a>
     <a href="/orders/all_orders" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
-    <a href="" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+    <a href="/users/all_users" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Users</a>
     <a href="/products/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Products</a>
     <br><br>
   </div>
