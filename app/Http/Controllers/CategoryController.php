@@ -5,25 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\CatRequest;
 
 class CategoryController extends Controller
 {
     public function create(){
-        $cat = Category::all();
-        return view('admin/categorys.create',compact('cat'));
+
+        return view('admin/categorys.create',
+            [
+                'cat' => Category::all()
+            ]
+        );
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'cat_name'=>'required'
-        ]);
+    public function store(CatRequest $request){
+        
         $cat = new Category;
         $cat->cat_name = $request->cat_name;
         $cat->save();
         return redirect()->back()->with('message','Category created successfully');
     }
 
-    public function update(Request $request, $id){
+    public function update(CatRequest $request, $id){
         $edit_category = Category::find($id);
         $edit_category->cat_name = $request->input('cat_name');
          $edit_category->update();
@@ -31,8 +34,12 @@ class CategoryController extends Controller
     }
 
     public function edit($id){
-        $cat = Category::find($id);
-        return view('admin/categorys.edit',compact('cat'));
+        
+        return view('admin/categorys.edit',
+            [
+                'cat' => Category::find($id)
+            ]
+         );
     }
 
     public function delete($id){

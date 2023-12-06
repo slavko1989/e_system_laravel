@@ -51,9 +51,7 @@ class OrderController extends Controller
             $order->save();
         
 
-           /* $del_cart_id = $cart->id;
-            $dell_all_from_cart = Cart::where('id',$del_cart_id)->firstOrFail();
-            $dell_all_from_cart->delete();  */      
+                
        }
         return redirect('users/order')->with('message','Product created successfully');
         }else{

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gender;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\GenderRequest;
 
 
 class GenderController extends Controller
@@ -15,17 +16,15 @@ class GenderController extends Controller
         return view('admin/genders.create',compact('gender'));
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'gender_name'=>'required'
-        ]);
+    public function store(GenderRequest $request){
+        
         $gender = new Gender;
         $gender->gender_name = $request->gender_name;
         $gender->save();
         return redirect()->back()->with('message','gender created successfully');
     }
 
-    public function update(Request $request, $id){
+    public function update(GenderRequest $request, $id){
         $edit_gender = gender::find($id);
         $edit_gender->gender_name = $request->input('gender_name');
          $edit_gender->update();

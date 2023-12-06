@@ -9,6 +9,8 @@ use App\Models\Brand;
 use App\Models\Gender;
 use Illuminate\Validation\Rule;
 use DB;
+use App\Http\Requests\ProductRequest;
+use App\Services\ProductService;
 
 
 class ProductController extends Controller
@@ -34,33 +36,12 @@ class ProductController extends Controller
         return view('admin/products.create',compact('product','cats','brands','genders'));
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'title'=>'required',
-            'text'=>'required',
-            'price'=>'required',
-            'image'=>'required',
-            'cat_id'=>'required',
-            'brand_id'=>'required',
-            'gender_id'=>'required',
-            'quantity'=>'required'
-        ]);
+    public function store(ProductRequest $request,ProductService $upload){
+      
         $product = new Product;
-        $image = $request->image;
-        if($image){
-        $imgname = time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('product',$imgname);
-        $product->image=$imgname;
-        }
-
-        $product->title = $request->title;
-        $product->text = $request->text;
-        $product->price = $request->price;
-        $product->new_price = $request->new_price;
-        $product->cat_id = $request->cat_id;
-        $product->brand_id = $request->brand_id;
-        $product->gender_id = $request->gender_id;
-        $product->quantity = $request->quantity;
+       
+        $upload->setProductAttributes($product,$request);
+        $upload->uploadFile($request, $product); 
         $product->save();
         return redirect()->back()->with('message','Product created successfully');
     }

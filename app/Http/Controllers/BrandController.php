@@ -5,30 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\BrandRequest;
 
 
 class BrandController extends Controller
 {
     
     public function create(){
-        $brand = Brand::all();
-        return view('admin/brands.create',compact('brand'));
+       
+        return view('admin/brands.create',
+            [
+                'brand'=>Brand::all()
+            ]
+        );
+
+
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'brand_name'=>'required'
-        ]);
+    public function store(BrandRequest $request){
+        
         $brand = new Brand;
         $brand->brand_name = $request->brand_name;
         $brand->save();
         return redirect()->back()->with('message','Brand created successfully');
     }
 
-    public function update(Request $request, $id){
+    public function update(BrandRequest $request, $id){
         $edit_brand = Brand::find($id);
         $edit_brand->brand_name = $request->input('brand_name');
-         $edit_brand->update();
+        $edit_brand->update();
         return redirect()->back()->with('message','Update successfully record'); 
     }
 

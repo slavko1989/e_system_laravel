@@ -14,31 +14,35 @@ class AdminController extends Controller
 {
     public function index(){
 
-        $totalUsers = User::count();
-        $totalProducts = Product::count();
-        $totalCategory = Category::count();
-        $totalBrands = Brand::count();
-        $totalPrice = Product::sum('price');
-        $users = User::all();
-
-        return view('admin.index',compact('totalUsers','totalProducts','totalCategory','totalBrands','totalPrice','users'));
+        return view('admin.index',
+            [
+                'totalUsers' => User::count(),
+                'totalProducts' => Product::count(),
+                'totalCategory' => Category::count(),
+                'totalBrands' => Brand::count(),
+                'totalPrice' => Product::sum('price'),
+                'users' => User::all()
+            ]
+        );
     }
 
     public function all_orders(){
-      /*$order = Order::join('products', 'products.id', '=', 'orders.product_id')
-       ->join('users', 'users.id', '=', 'orders.user_id')
-       ->join('carts', 'carts.id', '=', 'orders.cart_id')
-       ->select('orders.user_id','orders.product_id',
-        'products.title','products.image','users.address','users.phone','users.name','carts.qty'
-            ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status','orders.id')->get();*/
-
-            $order = Order::all();
-        return view('admin/orders/all_orders',compact('order'));
+    
+        return view('admin/orders/all_orders',
+            [
+                'order' => Order::all()
+            ]
+    );
     }
 
        public function all_users(){
             $users = User::all();
-        return view('admin/users/all_users',compact('users'));
+        return view('admin/users/all_users',
+
+            [
+                'users' => User::all()
+            ]
+        );
     }
 
     public function order_status(Request $request,$id){
