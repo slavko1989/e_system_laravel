@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RoleController;
 
 
 
@@ -36,6 +37,11 @@ Route::controller(AdminController::class)->middleware(['admin'])->group(function
     Route::get('/users/all_users','all_users');   
 });
 
+Route::controller(RoleController::class)->group(function() {
+    Route::get('/admin/users/role','create');
+    Route::post('/admin/users/role','store');
+       
+});
 
 Route::controller(HomeController::class)->group(function() {
     Route::get('/','index');
@@ -98,4 +104,13 @@ Route::controller(CartController::class)->middleware(['user'])->group(function()
 Route::controller(OrderController::class)->middleware(['user'])->group(function() {
     Route::get('/users/order','order');
     Route::post('/users/order/{id}','add_to_order'); 
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

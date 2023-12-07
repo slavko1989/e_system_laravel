@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Role;
 
 class IsAdmin
 {
@@ -17,17 +18,18 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()){
-        if(Auth::user()->type=='1'){
+
+    if(Auth::check()){
+        $user = Auth::user();
+
+        if($user->role_id === 1){
             return $next($request);
-        }
-        else{
+            return redirect('admin/index')->with('status','Welcome Admin');
+        } else {
             return redirect('/')->with('status','Access Denied');
         }
-       }
-       else{
-         return redirect('users/login')->with('status','Please login in');
-       }
-    
+    } else {
+        return redirect('/login')->with('status','Please login in');
     }
+}
 }
