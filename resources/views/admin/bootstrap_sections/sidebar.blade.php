@@ -21,12 +21,17 @@
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
     
-    <a href="/categorys/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>Category</a>
-    <a href="/brands/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>Brand</a>
-    <a href="/genders/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>Gender</a>
-    <a href="/orders/all_orders" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
-    <a href="/users/all_users" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Users</a>
-    <a href="/products/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Products</a>
+    <a href="/categorys/create" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-list-alt"></span> Category</a>
+    <a href="/brands/create" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-list-alt"></span> Brand</a>
+    <a href="/genders/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i></i>Gender</a>
+    <a href="/orders/all_orders" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-shopping-cart"></span> Orders</a>
+    <a href="/users/all_users" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-user"></span> Users</a>
+    <a href="/products/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-leanpub"></i> Products</a>
+    <a href="/products/create" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-envelope"></span> Notifications</a>
+
+
+
+    
     <br><br>
   </div>
 </nav>
