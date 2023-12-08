@@ -1,44 +1,41 @@
-@props(['product'])
-  <div class="container">
-  <h2>Listing all products</h2>
-              
-  <table class="table" style="width: 50%;">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Text</th>
-        <th>Image</th>
-        <th>Category</th>
-        <th>Brand</th>
-        <th>Gender</th>
-        <th>Price</th>
-        <th>New price</th>
-        <th>Quantity</th>
-
-        <th>Actions</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      @foreach($product as $product)
-      <tr>
-        <td>{{ $product->title }}</td>
-        <td>{{ $product->text }}</td>
-        <td><img src="{{ asset('product/'.$product->image) }}" style="width: 100px;height: 100px;"></td>
-       
-        <td>{{ $product->cat_name }}</td>
-        <td>{{ $product->brand_name }}</td>
-        <td>{{ $product->gender_name }}</td>
-        <td>{{ $product->price }}</td>
-        <td>{{ $product->new_price }}</td>
-        <td>{{ $product->quantity }}</td>
-        <td>
-          <a href="edit/{{ $product->id }}"><span class="glyphicon glyphicon-pencil"></span></a> | 
-          <a href="create/{{ $product->id }}"><span class="glyphicon glyphicon-remove"></span></a>
-        </td>
-
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
+<div class="container">
+    <h2>Listing all products</h2>
+    <table class="table table-responsive" style="width: 100%;">
+        <caption>List of all available products</caption>
+        <thead>
+            <tr>
+                <!-- Ostali zaglavlji -->
+                <th class="text-end">Title</th>
+                <th class="text-end">Text</th>
+                <th class="text-end">Image</th>
+               
+                <th class="text-end">Price</th>
+                <th class="text-end">New price</th>
+                <th class="text-end">Quantity</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($product as $prod)
+            <tr>
+                <!-- Ostala polja -->
+                <td class="text-end text-truncate">{{ $prod->title }}</td>
+                <td class="text-end text-truncate">{{ $prod->text }}</td>
+                <td class="text-end">
+                    <div style="max-width: 120px; max-height: 120px; overflow: hidden;">
+                        <img src="{{ asset('product/'.$prod->image) }}" class="img-fluid" alt="{{ $prod->title }}">
+                    </div>
+                </td>
+                
+                <td class="text-end text-truncate">{{ $prod->price }}</td>
+                <td class="text-end text-truncate">{{ $prod->new_price }}</td>
+                <td class="text-end text-truncate">{{ $prod->quantity }}</td>
+                <td class="text-end">
+                    <a href="edit/{{ $prod->id }}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="create/{{ $prod->id }}" title="Delete"><span class="glyphicon glyphicon-minus"></span></a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>

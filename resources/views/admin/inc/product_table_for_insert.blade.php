@@ -1,66 +1,92 @@
+<div class="container">
+    <h5 class="mb-4">Table for products</h5>
+    <div class="row">
+        <div class="col-md-6">
+            @if(session()->has('message'))
+            <p class="alert alert-danger">{{ session()->get('message') }}</p>
+            @endif
+            <form method="post" action="{{ url('products/create') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{ old('title') }}">
+                    @error('title')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
 
-<div class="w3-panel">
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-third">
-         @if(session()->has('message'))
-        <p style="color: red;font-weight: bolder;">{{ session()->get('message') }}</p>
-  @endif
-      </div>
-      <div class="w3-twothird">
-        <h5>Table for products</h5>
-        <div class="form-group">
-        	<form method="post" action="{{ url('products/create') }}" enctype="multipart/form-data">
-        		@csrf
-    		<label for="cat_name">Title:</label>
-    		<input type="text" class="form-control" placeholder="Enter title" id="category" name="title" value="{{ old('title') }}">
-        @error('title')
-            <p style="color: black;">{{ $message }}</p>
-        @enderror
-        <label for="cat_name">Text:</label>
-        <input type="text" class="form-control" placeholder="Enter text" id="category" name="text" value="{{ old('text') }}">
-        @error('text')
-            <p style="color: black;">{{ $message }}</p>
-        @enderror
-        <label for="cat_name">Price:</label>
-        <input type="text" class="form-control" placeholder="Enter price" id="category" name="price" value="{{ old('price') }}">
-        @error('title')
-            <p style="color: black;">{{ $message }}</p>
-        @enderror
-        <label for="cat_name">New price:</label>
-        <input type="text" class="form-control" placeholder="Enter new price" id="category" name="new_price" value="{{ old('new_price') }}">
-        @error('new_price')
-            <p style="color: black;">{{ $message }}</p>
-        @enderror
-        <label for="cat_name">Image:</label>
-        <input type="file" class="form-control" placeholder="Enter image" id="category" name="image" value="{{ old('image') }}">
-        @error('image')
-            <p style="color: black;">{{ $message }}</p>
-        @enderror
-        <select name="cat_id">
-          <option>Choose category</option>
-          @foreach($cats as $cat)
-          <option value="{{ $cat->id }}">{{ $cat->cat_name  }}</option>
-          @endforeach()
-        </select><br>
-        <select name="brand_id">
-          <option>Choose brand</option>
-          @foreach($brands as $brand)
-          <option value="{{ $brand->id }}">{{ $brand->brand_name  }}</option>
-          @endforeach()
-        </select><br>
-        <select name="gender_id">
-          <option>Choose gender</option>
-          @foreach($genders as $gender)
-          <option value="{{ $gender->id }}">{{ $gender->gender_name  }}</option>
-          @endforeach()        
-        </select><br>
-         <label for="cat_name">Quantity</label>
-        <input type="text" class="form-control" placeholder="Enter quantity" id="category" name="quantity" value="{{ old('quantity') }}">
-        @error('quantity')
-            <p style="color: black;">{{ $message }}</p>
-        @enderror
-    		<button type="submit" class="btn btn-primary">Add</button>
-  		</div>
-      </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Text:</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter text" name="text" value="{{ old('text') }}">
+                    @error('text')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Price:</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter price" name="price" value="{{ old('price') }}">
+                    @error('price')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">New Price:</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter quantity" name="new_price" value="{{ old('new_price') }}">
+                    @error('new_price')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Quantity:</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter title" name="quantity" value="{{ old('quantity') }}">
+                    @error('quantity')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image:</label>
+                    <input type="file" class="form-control" id="image" name="image">
+                    @error('image')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="cat_id" class="form-label">Category:</label>
+                    <select class="form-select" name="cat_id">
+                        <option selected>Choose category</option>
+                        @foreach($cats as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->cat_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cat_id" class="form-label">Brand:</label>
+                    <select class="form-select" name="brand_id">
+                        <option selected>Choose category</option>
+                        @foreach($brands as $brand)
+                        <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cat_id" class="form-label">Gender:</label>
+                    <select class="form-select" name="cat_id">
+                        <option selected>Choose category</option>
+                        @foreach($genders as $gender)
+                        <option value="{{ $gender->id }}">{{ $gender->gender_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
     </div>
-  </div>
+</div>

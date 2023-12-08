@@ -8,20 +8,8 @@ use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 
-class FileUploadService
-{
 
-
-    public function uploadFile($request,$product){
-
-        $image = $request->profile;
-        if($image){
-        $imgname = time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('product',$imgname);
-        $product->image=$imgname;
-
-        }
-    }
+class ProductAttributes{
 
     public function setProductAttributes(Product $product, ProductRequest $request){
 
@@ -33,6 +21,7 @@ class FileUploadService
         $product->brand_id = $request->brand_id;
         $product->gender_id = $request->gender_id;
         $product->quantity = $request->quantity;
+        //$product->image = $request->image;
     }
 }
 ?>

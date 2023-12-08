@@ -10,7 +10,8 @@ use App\Models\Gender;
 use Illuminate\Validation\Rule;
 use DB;
 use App\Http\Requests\ProductRequest;
-use App\Services\ProductService;
+use App\Services\ProductAttributes;
+use App\Services\FileUploadService;
 
 
 class ProductController extends Controller
@@ -36,11 +37,11 @@ class ProductController extends Controller
         return view('admin/products.create',compact('product','cats','brands','genders'));
     }
 
-    public function store(ProductRequest $request,ProductService $upload){
+    public function store(ProductRequest $request,ProductAttributes $attr,FileUploadService $upload){
       
         $product = new Product;
        
-        $upload->setProductAttributes($product,$request);
+        $attr->setProductAttributes($product,$request);
         $upload->uploadFile($request, $product); 
         $product->save();
         return redirect()->back()->with('message','Product created successfully');
