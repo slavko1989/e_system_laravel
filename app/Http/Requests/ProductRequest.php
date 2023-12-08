@@ -27,6 +27,7 @@ class ProductRequest extends FormRequest
             'title'=>'required',
             'text'=>'required',
             'price'=>'required',
+            
             'image'=>'required|mimes:jpeg,png,jpg,gif',
             'cat_id'=>'required',
             'brand_id'=>'required',

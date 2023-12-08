@@ -14,34 +14,30 @@
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="title" class="form-label">Text:</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter text" name="text" value="{{ old('text') }}">
+                    <input type="text" class="form-control" id="text" placeholder="Enter text" name="text" value="{{ old('text') }}">
                     @error('text')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="title" class="form-label">Price:</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter price" name="price" value="{{ old('price') }}">
+                    <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" value="{{ old('price') }}">
                     @error('price')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="title" class="form-label">New Price:</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter quantity" name="new_price" value="{{ old('new_price') }}">
+                    <input type="text" class="form-control" id="new_proce" placeholder="Enter new price" name="new_price" value="{{ old('new_price') }}">
                     @error('new_price')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="title" class="form-label">Quantity:</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter title" name="quantity" value="{{ old('quantity') }}">
+                    <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity" value="{{ old('quantity') }}">
                     @error('quantity')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -54,31 +50,38 @@
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="cat_id" class="form-label">Category:</label>
                     <select class="form-select" name="cat_id">
+                        @error('cat_id')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                        
                         <option selected>Choose category</option>
                         @foreach($cats as $cat)
                         <option value="{{ $cat->id }}">{{ $cat->cat_name }}</option>
                         @endforeach
                     </select>
                 </div>
-
                 <div class="mb-3">
                     <label for="cat_id" class="form-label">Brand:</label>
                     <select class="form-select" name="brand_id">
-                        <option selected>Choose category</option>
+                        @error('brand_id')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                        <option selected>Choose Brand</option>
                         @foreach($brands as $brand)
                         <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
                         @endforeach
                     </select>
                 </div>
-
                 <div class="mb-3">
                     <label for="cat_id" class="form-label">Gender:</label>
-                    <select class="form-select" name="cat_id">
-                        <option selected>Choose category</option>
+                    <select class="form-select" name="gender_id">
+                        @error('gender_id')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                        <option selected>Choose gender</option>
                         @foreach($genders as $gender)
                         <option value="{{ $gender->id }}">{{ $gender->gender_name }}</option>
                         @endforeach

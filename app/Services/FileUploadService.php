@@ -16,9 +16,8 @@ class FileUploadService
         $image = $request->image;
         if($image){
         $imgname = time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('product',$imgname);
+        $request->image->move(public_path('product'),$imgname);
         $product->image=$imgname;
-
         }
     }
 }

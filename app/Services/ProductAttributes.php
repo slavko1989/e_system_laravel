@@ -21,7 +21,6 @@ class ProductAttributes{
         $product->brand_id = $request->brand_id;
         $product->gender_id = $request->gender_id;
         $product->quantity = $request->quantity;
-        //$product->image = $request->image;
     }
 }
 ?>
