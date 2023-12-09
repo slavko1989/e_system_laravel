@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
-
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -25,21 +24,46 @@ class CartController extends Controller
 
         return view('users.cart',compact('cart'));
     }
+  
     public function add_to_cart(Request $request, $id){
 
-        if(Auth::id()){
-            $user = Auth::user();
-            $product = product::find($id);
-            $cart = new Cart;
-            $cart->user_id = $user->id;
-            $cart->product_id = $product->id;
-            $cart->qty = $request->qty;
-            $cart->save();
-        return redirect('users/cart')->with('message','Product created successfully');
-        }else{
-            return redirect('users/login');
+    $validatedData = $request->validate([
+        'qty' => 'required|numeric|min:1',
+    ]);
+
+    if(Auth::check()){
+        $user = Auth::user();
+        $product = Product::find($id);
+
+        if($product && $user){
+            if($product->quantity >= $validatedData['qty']){ 
+
+                $cart = new Cart;
+                $cart->user_id = $user->id;
+                $cart->product_id = $product->id;
+                $cart->qty = $validatedData['qty'];
+                $cart->save();
+
+                
+                $product->quantity -= $validatedData['qty'];
+                $product->save();
+                
+
+                return redirect('users/cart')->with('message','Product added to cart successfully');
+
+            } else {
+                return redirect()->back()->with('error', 'Insufficient quantity in stock');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Product or user not found');
         }
+    } else {
+        return redirect('/login')->with('error', 'Please log in to add products to cart');
     }
+}
+
+
+
     public function delete($id){
         
         $delete = Cart::where('id',$id)->firstOrFail();

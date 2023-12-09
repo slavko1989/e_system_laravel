@@ -81,7 +81,4 @@ class ProductController extends Controller
         $delete = Product::where('id',$id)->firstOrFail()->delete();
         return redirect()->back()->with('message','Deleted successfully');
     }
-
-
-
 }

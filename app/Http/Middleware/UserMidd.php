@@ -18,7 +18,7 @@ class UserMidd
     public function handle(Request $request, Closure $next)
     {
           if(Auth::check()){
-        if(Auth::user()->type=='0'){
+        if(Auth::user()->role_id === '0'){
             return $next($request);
         }
         else{
@@ -26,7 +26,7 @@ class UserMidd
         }
        }
        else{
-         return redirect('users/login')->with('status','Please login in');
+         return redirect('/login')->with('status','Please login in');
        }
     
     }

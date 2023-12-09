@@ -35,19 +35,16 @@ class HomeController extends Controller
     }
      public function show_by_cat($id){
         $catDetails = Category::where('id',$id)->first();
-        //$catDetails = DB::table('products')->where('cat_id', $cats->id)->get();
         return view('home.show_by_cat',compact('catDetails'));
     }
 
    
     public function show_by_brand($id){
         $brandDetails = Brand::where('id',$id)->first();
-        //$brandDetails = DB::table('products')->where('brand_id', $brands->id)->get();
         return view('home.show_by_brands',compact('brandDetails'));
     }
     public function show_by_gender($id){
         $genderDetails = Gender::where('id',$id)->first();
-        //$genderDetails = DB::table('products')->where('gender_id', $genders->id)->get();
         return view('home.show_by_genders',compact('genderDetails'));
     }
 

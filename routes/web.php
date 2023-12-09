@@ -7,7 +7,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoleController;
@@ -37,7 +36,7 @@ Route::controller(AdminController::class)->middleware(['admin'])->group(function
     Route::get('/users/all_users','all_users');   
 });
 
-Route::controller(RoleController::class)->group(function() {
+Route::controller(RoleController::class)->middleware(['admin'])->group(function() {
     Route::get('/admin/users/role','create');
     Route::post('/admin/users/role','store');
        
@@ -87,15 +86,8 @@ Route::controller(ProductController::class)->middleware(['admin'])->group(functi
     Route::post('/products/update/{id}','update');
 });
 
-Route::controller(UserController::class)->group(function() {
-    Route::get('/users/register','reg');
-    Route::post('/users/register','store');
-    Route::get('/users/login','log');
-    Route::post('/users/login','authenticate');
-    Route::get('/users/logout','logout');
-});
 
-Route::controller(CartController::class)->middleware(['user'])->group(function() {
+Route::controller(CartController::class)->group(function() {
     Route::get('/users/cart','cart');
     Route::post('/users/cart/{id}','add_to_cart'); 
     Route::get('/users/cart/{id}','delete');
