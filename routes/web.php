@@ -93,7 +93,7 @@ Route::controller(CartController::class)->group(function() {
     Route::get('/users/cart/{id}','delete');
 });
 
-Route::controller(OrderController::class)->middleware(['user'])->group(function() {
+Route::controller(OrderController::class)->group(function() {
     Route::get('/users/order','order');
     Route::post('/users/order/{id}','add_to_order'); 
 });

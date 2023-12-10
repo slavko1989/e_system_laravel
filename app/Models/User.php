@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\HaMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Cart;
 
 class User extends Authenticatable
@@ -66,7 +66,8 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class,'role_id');
     }
-    public function cart(){
-        return $this->hasMany(Cart::class,'user_id','id');
+   public function carts()
+    {
+        return $this->hasMany(Cart::class, 'user_id');
     }
 }

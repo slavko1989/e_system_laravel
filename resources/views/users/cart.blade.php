@@ -5,7 +5,9 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -13,8 +15,7 @@
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="../../css/style.css" rel="stylesheet">
+    
 
     @endsection
 @include('bootstrap_sections.nav')
@@ -40,59 +41,71 @@
             <div class="col-lg-8 table-responsive mb-5">
          
 
-         
+ 
 
-       <table class="table table-bordered text-center mb-0">
-                    <thead class="bg-secondary text-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        @foreach($cart as $cart)
+<table class="table table-bordered text-center mb-0">
+    <thead class="bg-secondary text-dark">
+        <tr>
+            <th>ID</th>
+            
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody class="align-middle">
+        @if($cart->isNotEmpty())
+            @foreach($cart as $cartItem)
+               
 
-                        <tr>
-                            <td>{{ $cart->id }}</td>
-                            <td class="align-middle"><img src="{{ asset('product/'.$cart->image) }}" alt="" style="width: 50px;"></td>
-                            <td class="align-middle">
-                                @if($cart->new_price!=null)
-                                    {{ $cart->new_price  }}
-                                @else 
-                                    {{ $cart->price  }}
-                                @endif
-                                </td>
-                            <td class="align-middle">
-                                {{ $cart->qty }}
-                            </td>
-                            <td class="align-middle">
-                                @if($cart->new_price!=null)
-                                    {{ $cart->new_price * $cart->qty  }}
-                                @else 
-                                    {{ $cart->price * $cart->qty  }}
-                                @endif</td>
-                            <td class="align-middle"><a href="{{ url('users/cart/'. $cart->id) }}" class="btn btn-sm btn-primary">X</a></td>
-                        </tr>
+            <tr>
+                
+                <td>{{ $cartItem->id }}</td>
+                <td class="align-middle"><img src="{{ asset('product/'.$cartItem->product->image) }}" alt="" style="width: 50px;"></td>
+                
+                <td class="align-middle">
+                    @if($cartItem->product->new_price!=null)
+                        {{ $cartItem->product->new_price  }}
+                    @else 
+                        {{ $cartItem->product->price  }}
+                    @endif
+                </td>
+                <td class="align-middle">
+                    {{ $cartItem->qty }}
+                </td>
+                <td class="align-middle">
+                    @if($cartItem->product->new_price!=null)
+                        {{ $cartItem->product->new_price * $cartItem->qty  }}
+                    @else 
+                        {{ $cartItem->product->price * $cartItem->qty  }}
+                    @endif
+                </td>
+                <td class="align-middle"><a href="{{ url('users/cart/'. $cartItem->id) }}" class="btn btn-sm btn-primary">X</a></td>
+            </tr>
 
-                          <?php     
-                                if($cart->new_price!=null){
-                                    $sum = array($cart->qty * $cart->new_price);
-                                $total = array_sum($sum);
-                                @$i += $total;
-                                }else{
-                                    $sum = array($cart->qty * $cart->price);
-                                $total = array_sum($sum);
-                                @$i += $total;
-                                }  
-                             ?>   
+            <?php     
+                if($cartItem->product->new_price!=null){
+                    $sum = array($cartItem->qty * $cartItem->product->new_price);
+                    $total = array_sum($sum);
+                    @$i += $total;
+                } else {
+                    $sum = array($cartItem->qty * $cartItem->product->price);
+                    $total = array_sum($sum);
+                    @$i += $total;
+                }  
+            ?>   
 
-                        @endforeach
-                    </tbody>
-                </table>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="7">Korpa je prazna</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+
 
             </div>
             <div class="col-lg-4">
@@ -114,16 +127,7 @@
 
                             </h5>
                         </div>
-                        <form method="post" action="{{ url('users/order',$cart->product_id) }}">
-                            @csrf
-                        <input type="hidden" name="id">
-                        <input type="hidden" name="user_id"> 
-                        <input type="hidden" name="product_id">
-                        <input type="hidden" name="cart_id">
-                        <input type="hidden" name="payment_status" value="0">
-                        <input type="hidden" name="delivery_status" value="0">  
-                        <input type="submit" name="submit" value="Cash on delivery" class="btn btn-block btn-primary my-3 py-3">
-                        </form>
+                        
                         <a href="{{ url('users/order') }}" class=
                         "btn btn-block btn-primary my-3 py-3">Paypall</a> 
                     </div>
@@ -141,18 +145,7 @@
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    
 </body>
 
 </html>

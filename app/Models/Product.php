@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HaMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use App\Models\Category;
 use App\Models\Barnd;
@@ -19,9 +19,11 @@ class Product extends Model
     use HasFactory;
 
 
-    public function cart() {
-        return $this->hasMany(Cart::class,'product_id','id');
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'product_id');
     }
+    
       public function cat_model(){
         return $this->belongsTo(Category::class,'cat_id','id');
     }

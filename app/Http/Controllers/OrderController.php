@@ -23,7 +23,7 @@ class OrderController extends Controller
        ->join('users', 'users.id', '=', 'orders.user_id')
        ->join('carts','carts.id','=', 'orders.cart_id')
        ->select('orders.user_id','orders.product_id','orders.cart_id','carts.qty',
-        'products.title','products.image','users.address','users.phone','users.name'
+        'products.title','products.image'
             ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status')
        ->where('orders.user_id','=',$id)->get();
         
