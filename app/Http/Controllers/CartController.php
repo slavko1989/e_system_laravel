@@ -15,14 +15,17 @@ class CartController extends Controller
 {
     
 
-    public function cart(){
-       $id = optional(Auth::user())->id;
+    public function cart()
+    {
+        $id = Auth::user()->id;
+
         $cart = Cart::join('users', 'users.id', '=', 'carts.user_id')
        ->join('products', 'products.id', '=', 'carts.product_id')
        ->select('products.quantity','carts.id','products.price','products.new_price','products.image','carts.product_id','carts.qty')
        ->where('carts.user_id','=',$id)->get();
 
-        return view('users.cart',compact('cart'));
+    return view('users.cart', compact('cart'));
+        
     }
   
     public function add_to_cart(Request $request, $id){
@@ -47,7 +50,7 @@ class CartController extends Controller
                 
                 $product->quantity -= $validatedData['qty'];
                 $product->save();
-                
+
 
                 return redirect('users/cart')->with('message','Product added to cart successfully');
 
@@ -66,10 +69,23 @@ class CartController extends Controller
 
     public function delete($id){
         
-        $delete = Cart::where('id',$id)->firstOrFail();
-        $delete->delete();
+        $cart = Cart::find($id);
+        if($cart){
+            $productId = $cart->product_id;
+            $qty = $cart->qty;
+        $cart->delete();
 
+        $product = Product::find($productId);
+
+        if($product){
+            $product->quantity += $qty;
+            $product->save();
+        }
+    
         return redirect('users/cart')->with('message','Product deleted successfully');
+    }else{
+        return redirect('users/cart')->with('error','Cart item not found');
 
+        }
     }
 }

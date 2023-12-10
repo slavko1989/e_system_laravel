@@ -27,7 +27,7 @@
                     <input type="hidden" name="id">
                     <input type="hidden" name="user_id">
                     <input type="hidden" name="product_id">
-                    <input type="number" min="1" value="1" name="qty" max="{{ $product->quantity }}" style="width: 80px;">
+                    <input type="number" min="1" name="qty" value="1" max="{{ $product->quantity }}" style="width: 80px;">
                     <input type="submit" name="submit" value="Add to cart" class="btn btn-primary">
                 </form>
                 @else
