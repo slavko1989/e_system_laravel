@@ -129,7 +129,9 @@
                         </div>
                         
                         <a href="{{ url('users/order') }}" class=
-                        "btn btn-block btn-primary my-3 py-3">Paypall</a> 
+                        "btn btn-block btn-primary my-3 py-3">Pay on delivery</a>
+                        <a href="" class=
+                        "btn btn-block btn-primary my-3 py-3">Master card</a> 
                     </div>
                 </div>
             </div>

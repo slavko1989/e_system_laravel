@@ -10,6 +10,8 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Services\CartServices;
+use App\Http\Requests\CartRequest;
 
 class CartController extends Controller
 {
@@ -22,49 +24,20 @@ class CartController extends Controller
         
     }
   
-    public function add_to_cart(Request $request, $id){
+    public function add_to_cart(CartRequest $request,CartServices $cart_service, $id){
 
-        $validatedData = $request->validate([
-        'qty' => 'required|numeric|min:1',
-    ]);
-        
-if(Auth::check()){
-    $user = Auth::user();
-    $product = Product::find($id);
 
-   
-    if($product && $user){
-        
-        if($product->quantity >= $validatedData['qty']){ 
+        $cart_service->checkAuthentication();
+        $user = Auth::user();
+        $product = $cart_service->findByProductId($id);
 
-            $existingCartItem = Cart::where('user_id', $user->id)
-                                    ->where('product_id', $product->id)
-                                    ->first();
+        $cart_service->validateProductAndUser($product,$user);
 
-            if($existingCartItem) {
-                return redirect()->back()->with('error', 'Product already in cart');
-            } else {
-                
-                $cart = new Cart;
-                $cart->user_id = $user->id;
-                $cart->product_id = $product->id;
-                $cart->qty = $validatedData['qty'];
-                $cart->save();
+        if($product->quantity >= $request->qty){
 
-                $product->quantity -= $validatedData['qty'];
-                $product->save();
-
-                return redirect('users/cart')->with('message','Product added to cart successfully');
-            }
-        } else {
-            return redirect()->back()->with('error', 'Insufficient quantity in stock');
+            $cart_service->checkProductQuantity($product,$request->qty);
+            $cart_service->addToCart($user, $product, $request->qty);
         }
-    } else {
-        return redirect()->back()->with('error', 'Product or user not found');
-    }
-} else {
-    return redirect('/login')->with('error', 'Please log in to add products to cart');
-}
 }
 
     
