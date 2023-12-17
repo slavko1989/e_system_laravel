@@ -56,8 +56,8 @@
         </tr>
     </thead>
     <tbody class="align-middle">
-        @if($cart->isNotEmpty())
-            @foreach($cart as $cartItem)
+        @if($userCart->isNotEmpty())
+            @foreach($userCart as $cartItem)
                
 
             <tr>

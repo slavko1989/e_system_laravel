@@ -66,4 +66,12 @@ class CartServices
         }
     }
 
+    public function getUserCart($userId)
+    {
+        $userCart = Cart::where('user_id', $userId)
+                        ->with('product')->get();
+
+        return $userCart;
+    }
+
 }

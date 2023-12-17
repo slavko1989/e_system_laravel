@@ -17,10 +17,15 @@ class CartController extends Controller
 {
     
 
-    public function cart()
+    public function cart(CartServices $cart_service)
     {
-       $cart = Cart::all();
-    return view('users.cart', compact('cart'));
+
+    $user = Auth::user();
+    $userCart = $cart_service->getUserCart($user->id);
+    return view('users.cart')->with('userCart', $userCart);
+
+    //$cart = Cart::all();
+    //return view('users.cart', compact('cart'));
         
     }
   
