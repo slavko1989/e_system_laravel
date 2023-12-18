@@ -87,7 +87,7 @@ Route::controller(ProductController::class)->middleware(['admin'])->group(functi
 });
 
 
-Route::controller(CartController::class)->group(function() {
+Route::controller(CartController::class)->middleware('cart')->group(function() {
     Route::get('/users/cart','cart');
     Route::post('/users/cart/{id}','add_to_cart'); 
     Route::get('/users/cart/{id}','delete');

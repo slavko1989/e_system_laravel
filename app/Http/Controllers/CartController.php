@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Services\CartServices;
 use App\Http\Requests\CartRequest;
+use App\Policies\CartPolicy;
 
 class CartController extends Controller
 {
@@ -23,10 +24,7 @@ class CartController extends Controller
     $user = Auth::user();
     $userCart = $cart_service->getUserCart($user->id);
     return view('users.cart')->with('userCart', $userCart);
-
-    //$cart = Cart::all();
-    //return view('users.cart', compact('cart'));
-        
+       
     }
   
     public function add_to_cart(CartRequest $request,CartServices $cart_service, $id){

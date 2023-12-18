@@ -17,6 +17,16 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Your account</a>
+
+
+                                    
+                                        
+                                        @if(Auth::user()->role_id === 1)
+                                    <a href="{{url ('admin/index') }}" class="dropdown-item">Admin panel</a>
+                                        @else
+
+                                    @endif
+
                                     <a href="{{url ('users/logout') }}" class="dropdown-item">logout</a>
                                     <a href="{{ url('users/order') }}" class="dropdown-item">Order</a>
                                 </div>

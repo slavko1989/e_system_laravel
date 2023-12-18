@@ -56,6 +56,8 @@
         </tr>
     </thead>
     <tbody class="align-middle">
+        @if(Auth::check())
+        
         @if($userCart->isNotEmpty())
             @foreach($userCart as $cartItem)
                
@@ -138,6 +140,11 @@
         </div>
     </div>
     <!-- Cart End -->
+   
+
+    @else
+    <p>Please log in to view the cart</p>
+    @endif
 
 
 
