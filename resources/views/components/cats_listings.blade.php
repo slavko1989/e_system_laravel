@@ -1,7 +1,7 @@
 @props(['cat'])
 
  <div class="container">
-  <h2>Listing all categies</h2>
+  <h2>Listing all categories</h2>
               
   <table class="table">
     <thead>

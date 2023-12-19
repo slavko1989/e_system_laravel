@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <!-- Ostali zaglavlji -->
+                
                 <th class="text-end">Title</th>
                 <th class="text-end">Text</th>
                 <th class="text-end">Image</th>
@@ -19,6 +20,7 @@
             @foreach($product as $prod)
             <tr>
                 <!-- Ostala polja -->
+
                 <td class="text-end text-truncate">{{ $prod->title }}</td>
                 <td class="text-end text-truncate">{{ $prod->text }}</td>
                 <td class="text-end">

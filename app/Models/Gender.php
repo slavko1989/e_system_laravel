@@ -11,8 +11,8 @@ class Gender extends Model
     protected $fillable =['gender_name'];
     use HasFactory;
 
-    public function product_model_gender(){
+    public function product(){
 
-            return $this->hasMany(Product::class, 'gender_id', 'id');
+            return $this->hasMany(Product::class, 'gender_id');
     }
 }

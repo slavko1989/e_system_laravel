@@ -24,19 +24,19 @@ class Product extends Model
         return $this->hasMany(Cart::class, 'product_id');
     }
     
-      public function cat_model(){
+      public function cat(){
         return $this->belongsTo(Category::class,'cat_id','id');
     }
 
-    public function brand_model(){
+    public function brand(){
         return $this->belongsTo(Brand::class,'brand_id','id');
     }
 
-    public function gender_model(){
+    public function gender(){
         return $this->belongsTo(Gender::class,'gender_id','id');
     }
 
- public function order_model_prd(){
-        return $this->hasMany(Order::class,'product_id','id');
+ public function order(){
+        return $this->hasMany(Order::class,'product_id');
     }
 }

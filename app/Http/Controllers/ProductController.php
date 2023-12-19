@@ -19,22 +19,14 @@ class ProductController extends Controller
     
     public function create(){
 
-       $product = Product::join('categories', 'categories.id', '=', 'products.cat_id')
-       ->join('brands', 'brands.id', '=', 'products.brand_id')
-       ->join('genders', 'genders.id', '=', 'products.gender_id')
-       ->get(['products.title','products.id','products.quantity',
-        'products.text',
-        'products.image',
-        'products.price',
-        'products.new_price',
-        'categories.cat_name',
-        'brands.brand_name',
-        'genders.gender_name']);
-
-        $cats = category::all();
-        $brands = brand::all();
-        $genders = gender::all();
-        return view('admin/products.create',compact('product','cats','brands','genders'));
+       
+        return view('admin/products.create',
+                [
+                    'product'=> Product::all(),
+                    'cats'=> Category::all(),
+                    'brands' => Brand::all(),
+                    'genders' => Gender::all()
+                ]);
     }
 
     public function store(ProductRequest $request,ProductAttributes $attr,FileUploadService $upload){
