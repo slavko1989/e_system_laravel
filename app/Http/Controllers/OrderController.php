@@ -17,46 +17,58 @@ class OrderController extends Controller
 {
         public function order(){
        
-        $id = Auth::user()->id;
 
-        $order = Order::join('products', 'products.id', '=', 'orders.product_id')
-       ->join('users', 'users.id', '=', 'orders.user_id')
-       ->join('carts','carts.id','=', 'orders.cart_id')
-       ->select('orders.user_id','orders.product_id','orders.cart_id','carts.qty',
-        'products.title','products.image'
-            ,'products.price','products.new_price','products.quantity','orders.payment_status','orders.delivery_status')
-       ->where('orders.user_id','=',$id)->get();
-        
-        return view('users/order',compact('order'));
+       $order = Order::all();
+       return view('users/order',compact('order'));
       
     }
 
-      public function add_to_order(Request $request, $id){
+public function add_to_order(Request $request) {
+    // Pronalaženje trenutno prijavljenog korisnika
+    $user = Auth::user();
 
-        if(Auth::id()){
-            $id = Auth::user()->id;
-            $product = product::find($id);
-            $user_cart = Cart::where('user_id','=',$id)->get();
-            $cart = cart::find($id);
-            $order = new order;
-            foreach($user_cart as $cart){
+    // Pronalaženje korpe za prijavljenog korisnika
+    $cartItems = Cart::where('user_id', $user->id)->get();
 
-            $order->cart_id = $cart->id;
-            $order->user_id = $id;
-            $order->product_id = $cart->product_id;
-            $order->payment_status=$request->payment_status;
-            $order->delivery_status=$request->delivery_status;
+    if ($cartItems->isEmpty()) {
+        return redirect()->back()->with('error', 'Cart is empty');
+    }
 
-        
-            $order->save();
-        
+    // Iteriranje kroz sve stavke u korpi i pravljenje narudžbi za svaku stavku
+    foreach ($cartItems as $cartItem) {
+        $product = Product::find($cartItem->product_id);
 
-                
-       }
-        return redirect('users/order')->with('message','Product created successfully');
-        }else{
-            return redirect('users/login');
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found');
         }
-   }
+
+        // Kreiranje nove narudžbe za svaku stavku u korpi
+        $order = new Order;
+        $order->user_id = $user->id;
+        $order->product_id = $product->id; // Postavi odgovarajući product_id za narudžbu
+        $order->cart_id = $cartItem->id;
+        $order->delivery_status = $request->delivery_status;
+        $order->payment_status = $request->payment_status;
+        $order->country = $request->country;
+        $order->city = $request->city;
+        $order->street = $request->street;
+        $order->status = $request->status;
+        $order->order_qty = $cartItem->qty;
+
+        // Sačuvaj narudžbu
+        $order->save();
+
+        // Ako je narudžba uspešno sačuvana, izbriši proizvod iz korpe
+        if ($order->id) {
+            $cartItem->delete();
+        }
+    }
+
+    // Preusmeri nazad na prethodnu stranicu sa odgovarajućom porukom
+    return redirect()->back()->with('success', 'Orders placed successfully');
+}
+
+
+
 
 }

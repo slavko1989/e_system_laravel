@@ -1,5 +1,5 @@
 @props(['brandDetails'])
- @foreach($brandDetails->product_model_brand as $product)
+ @foreach($brandDetails->product as $product)
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 
                 <div class="card product-item border-0 mb-4" style="height: 300px;">

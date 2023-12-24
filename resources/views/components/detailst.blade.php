@@ -13,8 +13,11 @@
                 </div>
                 <div class="col-lg-7 pb-5">
                     
-                    <h3 class="font-weight-semi-bold mb-4">{{ $details->price }}</h3>
+                    <h3 class="font-weight-semi-bold mb-4">{{ $details->price }}$</h3>
                     <p class="mb-4">{{ $details->text }}</p>
+                    <p class="mb-4">Category: {{ $details->cat->cat_name }}</p>
+                    <p class="mb-4">Brand: {{ $details->brand->brand_name }}</p>
+                    <p class="mb-4">Gender: {{ $details->gender->gender_name }}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
                         
                         @if(auth()->user())

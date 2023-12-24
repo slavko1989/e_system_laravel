@@ -87,7 +87,7 @@ Route::controller(ProductController::class)->middleware(['admin'])->group(functi
 });
 
 
-Route::controller(CartController::class)->middleware('cart')->group(function() {
+Route::controller(CartController::class)->group(function() {
     Route::get('/users/cart','cart');
     Route::post('/users/cart/{id}','add_to_cart'); 
     Route::get('/users/cart/{id}','delete');
@@ -95,7 +95,7 @@ Route::controller(CartController::class)->middleware('cart')->group(function() {
 
 Route::controller(OrderController::class)->group(function() {
     Route::get('/users/order','order');
-    Route::post('/users/order/{id}','add_to_order'); 
+    Route::post('/users/order','add_to_order'); 
 });
 Route::middleware([
     'auth:sanctum',

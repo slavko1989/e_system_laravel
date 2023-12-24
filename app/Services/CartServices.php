@@ -58,6 +58,7 @@ class CartServices
             $cart->product_id = $product->id;
             $cart->qty = $requestedQty;
             $cart->save();
+            
 
             $product->quantity -= $requestedQty;
             $product->save();

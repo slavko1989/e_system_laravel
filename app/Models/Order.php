@@ -12,7 +12,7 @@ use App\Models\Cart;
 
 class Order extends Model
 {
-    protected $fillable=['payment_status','delivery_status','user_id','product_id','cart_id'];
+    protected $fillable=['payment_status','delivery_status','user_id','product_id','cart_id','country','city','street','status','order_qty'];
     use HasFactory;
 
 public function cart(){

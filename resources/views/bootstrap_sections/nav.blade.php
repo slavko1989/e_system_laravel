@@ -16,7 +16,7 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Your account</a>
+                                    <a href="{{ url('user/profile') }}" class="dropdown-item">Your account</a>
 
 
                                     

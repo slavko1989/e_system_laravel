@@ -21,7 +21,20 @@
             </div>
             <div class="card-footer d-flex justify-content-between bg-light border">
                 <a href="{{ url('home/details/'. $product->id) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a><br>
+
                 @if(auth()->user())
+
+@if(session('status'))
+      <div class="alert alert-success">
+         {{ session('status') }}
+       </div>
+@endif
+
+@if(session('error'))
+      <div class="alert alert-success">
+         {{ session('error') }}
+       </div>
+@endif
                 <form method="post" action="{{ url('users/cart', $product->id) }}">
                     @csrf
                     <input type="hidden" name="id">

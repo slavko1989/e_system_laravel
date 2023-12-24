@@ -42,11 +42,7 @@
                     <thead class="bg-secondary text-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Products</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Price</th>
+                            
                             <th>Delivery</th>
                         </tr>
                     </thead>
@@ -55,54 +51,8 @@
 
                         <tr>
                             <td>{{ $order->id }}</td>
-                            <td>{{ $order->name }}</td>
-                            <td class="align-middle"><img src="{{ asset('product/'.$order->image) }}" alt="" style="width: 50px;"></td>
-                            <td class="align-middle">
-                            	{{ $order->address }}
-                      		</td>
-                      		<td class="align-middle">
-                            	{{ $order->phone }}
-                      		</td>
-                            <td class="align-middle">
-                                 @if($order->new_price!=null)
-                                    {{ $order->new_price * $order->qty  }}
-                                @else 
-                                    {{ $order->price * $order->qty  }}
-                                @endif
-                            </td>
-                            
-                        	<td class="align-middle">
-                            	@if($order->delivery_status == 0)
-
-                <button type="button" class="btn btn-info">
-                    In progress
-                </button>
-
-                @elseif($order->delivery_status == 1)
-                <button type="button" class="btn btn-danger">
-                    Cancel
-                </button>
-
-                @elseif($order->delivery_status == 2)
-                <button type="button" class="btn btn-primary">
-                    Shiffted
-                </button>
-
-                @endif
-                      		</td>
-                  </tr>
-                            <?php     
-                                if($order->new_price!=null){
-                                    $sum = array($order->qty * $order->new_price);
-                                $total = array_sum($sum);
-                                @$i += $total;
-                                }else{
-                                    $sum = array($order->qty * $order->price);
-                                $total = array_sum($sum);
-                                @$i += $total;
-                                }  
-                             ?>
-                  @endforeach
+                            <td>{{ $order->delivery_status }}</td>
+                            @endforeach
                     </tbody>
                 </table>
             </div>
@@ -115,7 +65,7 @@
                     
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold"><?php echo @$i; ?></h5>
+                            <h5 class="font-weight-bold"></h5>
                             <h5 class="font-weight-bold">
                                 
                                 

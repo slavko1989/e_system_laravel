@@ -1,6 +1,6 @@
 @props(['catDetails'])
 
- @foreach($catDetails->product_model_cat as $product)
+ @foreach($catDetails->product as $product)
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 
                 <div class="card product-item border-0 mb-4" style="height: 300px;">
