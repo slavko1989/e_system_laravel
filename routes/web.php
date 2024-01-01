@@ -33,12 +33,13 @@ Route::controller(AdminController::class)->middleware(['admin'])->group(function
     Route::get('/admin/index','index');
     Route::get('/orders/all_orders','all_orders');
     Route::post('/orders/all_orders/{id}','order_status');
-    Route::get('/users/all_users','all_users');   
+    Route::get('/users/all_users','all_users');
+
 });
 
 Route::controller(RoleController::class)->middleware(['admin'])->group(function() {
-    Route::get('/admin/users/role','create');
-    Route::post('/admin/users/role','store');
+    Route::get('/users/role','create');
+    Route::post('/users/role','store');
        
 });
 

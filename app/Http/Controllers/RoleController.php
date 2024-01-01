@@ -9,7 +9,7 @@ class RoleController extends Controller
 {
     public function create(){
 
-        return view('admin/users/role',
+        return view('admin/users.role',
 
             [
                 'role'=>Role::all()

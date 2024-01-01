@@ -44,38 +44,31 @@
                             <th>ID</th>
                             
                             <th>Delivery</th>
+                            <th>Product name</th>
                         </tr>
                     </thead>
+
+                    @if(Auth::check())
+
+                    
+
                     <tbody class="align-middle">
-                        @foreach($order as $order)
+                        @if($orders->isEmpty())
+                        <p>No orders found.</p>
+                    @else
+                        @foreach($orders as $order)
 
                         <tr>
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->delivery_status }}</td>
+                            <td><img src="{{ asset('product/'.$order->product->image) }}" class="img-fluid" style="width: 60px;height: 60px;"></td>
                             @endforeach
+                            @endif
                     </tbody>
+                    @endif
                 </table>
             </div>
-            <div class="col-lg-4">
-                
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Order Summary</h4>
-                    </div>
-                    
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold"></h5>
-                            <h5 class="font-weight-bold">
-                                
-                                
-
-                            </h5>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </div>
     <!-- Cart End -->

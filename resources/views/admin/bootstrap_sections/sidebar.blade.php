@@ -26,7 +26,8 @@
     <a href="/orders/all_orders" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-shopping-cart"></span> Orders</a>
     <a href="/users/all_users" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-user"></span> Users</a>
     <a href="/products/create" class="w3-bar-item w3-button w3-padding"><i class="fa fa-leanpub"></i> Products</a>
-    <a href="/products/create" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-envelope"></span> Notifications</a> 
+    <a href="/products/create" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-envelope"></span> Notifications</a>
+    <a href="/users/role" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-user"></span> Role Users</a> 
     <br><br>
   </div>
 </nav>

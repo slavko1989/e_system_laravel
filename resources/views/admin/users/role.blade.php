@@ -19,15 +19,40 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 @include('admin.bootstrap_sections.dashboard')
 
 
-<form method="post" action="{{ url('admin/users/role') }}">
+
+ <div class="container">
+  <form method="post" action="{{ url('/users/role') }}">
   @csrf
-  <input type="text" name="role_name">
+  <input type="text" name="role_name" placeholder="New role">
   <input type="submit" value="ADD">
 </form>
+  <h2>Listing all role</h2>
+              
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Role name</th>
+        <th>Actions</th>
 
-@foreach($role as $roles)
-{{ $roles->role_name }}
-@endforeach
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($role as $roles)
+      <tr>
+        <td>{{ $roles->role_name }}</td>
+        <td>
+          <a href="edit/{{ $roles->id }}"><span class="glyphicon glyphicon-pencil"></span></a> | 
+          <a href="create/{{ $roles->id }}"><span class="glyphicon glyphicon-remove"></span></a>
+        </td>
+
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
+
+
+
 
   
 
