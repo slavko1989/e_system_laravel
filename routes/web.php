@@ -34,6 +34,7 @@ Route::controller(AdminController::class)->middleware(['admin'])->group(function
     Route::get('/orders/all_orders','all_orders');
     Route::post('/orders/all_orders/{id}','order_status');
     Route::get('/users/all_users','all_users');
+    Route::post('/users/all_users/{id}','update_user_status')->name('update_status');
 
 });
 

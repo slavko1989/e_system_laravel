@@ -53,4 +53,13 @@ class AdminController extends Controller
         return redirect()->back();
         
     }
+
+    public function update_user_status(Request $request,$id){
+
+        $status = User::findOrFail($id);
+        $status->status = $request->input('status');
+        $status->save();
+        return redirect()->back();
+        
+    }
 }
