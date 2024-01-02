@@ -47,9 +47,9 @@ class AdminController extends Controller
 
     public function order_status(Request $request,$id){
 
-        $status = Order::find($id);
-        $status->delivery_status = $request->input('delivery_status');
-        $status->update();
+        $status = Order::findOrFail($id);
+        $status->status = $request->input('status');
+        $status->save();
         return redirect()->back();
         
     }
