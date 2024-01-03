@@ -41,8 +41,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <tr>
         <td>{{ $roles->role_name }}</td>
         <td>
-          <a href="edit/{{ $roles->id }}"><span class="glyphicon glyphicon-pencil"></span></a> | 
-          <a href="create/{{ $roles->id }}"><span class="glyphicon glyphicon-remove"></span></a>
+          <a href="edit_role/{{ $roles->id }}"><span class="glyphicon glyphicon-pencil"></span></a> | 
+          <a href="role/{{ $roles->id }}"><span class="glyphicon glyphicon-remove"></span></a>
         </td>
 
       </tr>

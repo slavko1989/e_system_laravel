@@ -41,6 +41,9 @@ Route::controller(AdminController::class)->middleware(['admin'])->group(function
 Route::controller(RoleController::class)->middleware(['admin'])->group(function() {
     Route::get('/users/role','create');
     Route::post('/users/role','store');
+    Route::get('/users/role/{id}','delete');
+    Route::get('/users/edit_role/{id}','edit');
+    Route::post('/users/edit_role/{id}','update');
        
 });
 

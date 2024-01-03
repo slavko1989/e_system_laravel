@@ -27,4 +27,24 @@ class RoleController extends Controller
         return redirect()->back();
 
     }
+
+    public function delete($id){
+        $delete = Role::where('id',$id)->firstOrFail()->delete();
+        return redirect()->back()->with('message','Deleted successfully');
+    }
+
+    public function edit($id){
+        
+        $edit_role = Role::find($id);
+        return view('admin/users.edit_role',compact('edit_role'));
+    }
+
+    public function update(Request $request, $id){
+
+        $edit_role = Role::find($id);
+
+        $edit_role->role_name = $request->input('role_name');
+        $edit_role->update();
+        return redirect()->back()->with('message','Product updated successfully'); 
+    }
 }

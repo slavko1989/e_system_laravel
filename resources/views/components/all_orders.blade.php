@@ -39,21 +39,24 @@
                     <input type="submit" name="submit" value="Choose!?">
                 </form>
                 @if($orders->status=="0")
-                <p>Pending</p>
+                <p style="color: brown;">Pending</p>
                 @elseif($orders->status=="1")
-                <p>Shiffted</p>
+                <p style="color: green;">Shiffted</p>
                 @elseif($orders->status=="2")
-                <p>Canceled</p>
+                <p style="color: red;">Canceled</p>
                 @endif
             </td>
             <td>
                 @if($orders->product->new_price!=null)
-                {{ $orders->product->new_price * $orders->order_qty  }}
+                {{ $orders->product->new_price * $orders->order_qty  }}$
                 @else
-                {{ $orders->product->price * $orders->order_qty  }}
+                {{ $orders->product->price * $orders->order_qty  }}$
                 @endif
             </td>
-            <td>Action</td>
+            <td>
+                <a href="edit/{{ $orders->id }}"><span class="glyphicon glyphicon-pencil"></span></a> |
+                <a href="create/{{ $orders->id }}"><span class="glyphicon glyphicon-remove"></span></a>
+            </td>
         </tr>
         @endforeach
     </tbody>
