@@ -12,7 +12,7 @@
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>{{ @$totalProducts }}</h3>
+          <h3>{{ isset($totalProducts) ? $totalProducts : '' }}</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Products</h4>
@@ -22,7 +22,7 @@
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>{{ @$totalBrands }}</h3>
+          <h3>{{ isset($totalBrands) ? $totalBrands : '' }}</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Brands</h4>
@@ -32,7 +32,7 @@
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>{{ @$totalCategory }}</h3>
+          <h3>{{ isset($totalCategory) ? $totalCategory : '' }}</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Category</h4>
@@ -42,7 +42,7 @@
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>{{ @$totalUsers }}</h3>
+          <h3>{{ isset($totalUsers) ? $totalUsers : '' }}</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Users</h4>
@@ -54,7 +54,7 @@
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>Orders</h3>
+          <h3>{{ isset($totalOrders) ? $totalOrders : '' }}</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Orders</h4>
@@ -64,7 +64,7 @@
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>{{ @$totalPrice }}</h3>
+          <h3>{{ isset($totalPrice) ? $totalPrice : '' }}</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>All products price</h4>

@@ -20,7 +20,7 @@ class HomeController extends Controller
         $cats = category::all();
         $brands = brand::all();
         $genders = gender::all();
-        $products = product::paginate(3);
+        $products = product::paginate(8);
         return view('index',compact('products','cats','brands','genders'));
     }
     public function details($id){

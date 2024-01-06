@@ -21,7 +21,8 @@ class AdminController extends Controller
                 'totalCategory' => Category::count(),
                 'totalBrands' => Brand::count(),
                 'totalPrice' => Product::sum('price'),
-                'users' => User::all()
+                'users' => User::all(),
+                'totalOrders' => Order::count(),
             ]
         );
     }
