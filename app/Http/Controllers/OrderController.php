@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\Cart;
 use DB;
+use Carbon\Carbon;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -17,14 +18,12 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class OrderController extends Controller
 {
 
-    public function order(){
+    public function order(Request $request){
 
 
     $user = Auth::user();
     $orders = Order::where('user_id', $user->id)->get();
-
-
-         
+        
     return view('users/order',compact('orders'));
       
     }
@@ -51,7 +50,7 @@ public function add_to_order(Request $request) {
         
         $order = new Order;
         $order->user_id = $user->id;
-        $order->product_id = $product->id; // Postavi odgovarajući product_id za narudžbu
+        $order->product_id = $product->id;
         $order->cart_id = $cartItem->id;
         $order->delivery_status = $request->delivery_status;
         $order->payment_status = $request->payment_status;
@@ -60,20 +59,27 @@ public function add_to_order(Request $request) {
         $order->street = $request->street;
         $order->status = $request->status;
         $order->order_qty = $cartItem->qty;
-
         
         $order->save();
-
         
         if ($order->id) {
             $cartItem->delete();
         }
     }
-
     
     return redirect('users/order')->with('success', 'Orders placed successfully');
 }
 
+
+public function showOrdersByDate(Request $request,$date) {
+     $parsedDate = Carbon::createFromFormat('Y-m-d H:i:s', str_replace('+', ' ', $date));
+
+    $products = Order::whereDate('created_at', '=' , $parsedDate)
+        ->with('product')
+        ->get();
+
+    return view('users.orders_by_date', compact('products'));
+}
 
 
 

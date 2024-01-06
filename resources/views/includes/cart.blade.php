@@ -69,7 +69,7 @@
         @endforeach
         @else
         <tr>
-            <td colspan="7">Korpa je prazna</td>
+            <td colspan="7">Cart is empty</td>
         </tr>
         @endif
     </tbody>

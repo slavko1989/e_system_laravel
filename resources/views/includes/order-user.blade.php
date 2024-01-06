@@ -8,8 +8,8 @@
             <th>Country</th>
             <th>City</th>
             <th>Street</th>
-            <th>Status</th>
-            <th>Created at</th>
+            
+            <th>View by date</th>
         </tr>
     </thead>
     
@@ -26,23 +26,21 @@
             <td>{{ $order->country }}</td>
             <td>{{ $order->city }}</td>
             <td>{{ $order->street }}</td>
-            <td>
-                @if($order->status=="0")
-                <button type="button" class="btn btn-info">
-                Pending
-                </button>
-                @elseif($order->status=="1")
-                <button type="button" class="btn btn-success">
-                Shipping
-                </button>
-                @elseif($order->status=="2")
-                <button type="button" class="btn btn-danger">
-                Canceled
-                </button>
-                @endif
-            </td>
+           
             
-            <td><a href="">{{ $order->created_at }} View all orders for this day</a></td>
+            <td>
+
+               <?php 
+               $encodedDate = urlencode(date('Y-m-d H:i:s', strtotime($order->created_at)));
+               ?>
+   
+        <a href="{{ url('users/orders_by_date/'. $encodedDate) }}">{{ $order->created_at }}</a><br>
+
+
+
+
+
+                </td>
             @endforeach
             @endif
         </tbody>

@@ -16,7 +16,7 @@
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Order Cart</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Orders by date</h1>
         <div class="d-inline-flex">
             <p class="m-0"><a href="">Home</a></p>
             <p class="m-0 px-2">-</p>
@@ -30,11 +30,11 @@
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             @if(Auth::check())
-                @include('includes.order-user')
+                @include('includes.order-date')
             @endif
             </div>
             
         </div>
     </div>
     <!-- Cart End -->
-    @include('bootstrap_sections.footer')
+  
