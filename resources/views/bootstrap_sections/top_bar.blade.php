@@ -40,11 +40,11 @@
                 <form action="{{url('home/search') }}" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for products" name="search">
-                        <input type="submit" name="submit">
+                        
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit"><span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </span></button>
                         </div>
                     </div>
                 </form>

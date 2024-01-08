@@ -36,8 +36,8 @@ class HomeController extends Controller
     }
     public function search(Request $request){
 
-        $search = $request->input('search');
-        $search = product::query()->where('title','LIKE',"%{$search}%")->where('text','LIKE',"%{$search}%")->get();
+        $searchTerm = $request->input('search');
+        $search = product::query()->where('title','LIKE',"%{$searchTerm}%")->orWhere('text','LIKE',"%{$searchTerm}%")->orderBy('created_at','desc')->get();
         return view('home.search', compact('search'));
     }
      public function show_by_cat($id){
