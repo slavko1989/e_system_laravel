@@ -10,6 +10,17 @@ use App\Mail\NewsMail;
 
 class NewsletterController extends Controller
 {
+
+    public function create(){
+
+        return view('admin/subs.subs',
+            [
+                'news'=>Newsletter::all()
+            ]
+        );
+
+    }
+
     public function store(NewsRequest $request){
 
         $news = new Newsletter;
@@ -25,5 +36,11 @@ class NewsletterController extends Controller
 
         return redirect()->back()->with('success','You are subscribe now');
 
+    }
+
+    public function delete($id){
+        
+        $delete = Newsletter::where('id',$id)->firstOrFail()->delete();
+        return redirect()->back()->with('message','Deleted successfully');
     }
 }

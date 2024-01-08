@@ -106,6 +106,8 @@ Route::controller(OrderController::class)->group(function() {
 
 Route::controller(NewsletterController::class)->group(function() {
     Route::post('/','store')->name('news');
+    Route::get('/subs/subs','create')->middleware(['admin']);
+    Route::get('/subs/subs/{id}','delete')->middleware(['admin']);
 });
 
 Route::middleware([
