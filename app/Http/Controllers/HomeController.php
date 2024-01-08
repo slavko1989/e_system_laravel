@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Gender;
 use App\Models\Cart;
+use App\Models\Order;
 use DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +18,17 @@ class HomeController extends Controller
 {
      public function index(){
         
-        $cats = category::all();
-        $brands = brand::all();
-        $genders = gender::all();
-        $products = product::paginate(8);
-        return view('index',compact('products','cats','brands','genders'));
+        return view('index',([
+            'products'=>product::paginate(8),
+            'cats'=>category::all(),
+            'brands'=>brand::all(),
+            'genders'=>gender::all(),
+            'best_selling'=>Order::select('product_id')->selectRaw('SUM(order_qty) as total_sold')->groupBy('product_id')->orderByDesc('total_sold')->get()
+
+        ]));
+
+
+
     }
     public function details($id){
         $details = product::find($id);

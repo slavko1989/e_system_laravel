@@ -81,6 +81,10 @@ public function showOrdersByDate(Request $request,$date) {
     return view('users.orders_by_date', compact('products'));
 }
 
+public function best_selling(){
+
+    $best_selling = Order::select('product_id')->selectRaw('SUM(order_qty) as total_sold')->groupBy('product_id')->orderByDesc('total_sold')->get();
+}
 
 
 }

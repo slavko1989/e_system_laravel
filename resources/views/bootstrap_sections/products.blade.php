@@ -56,9 +56,11 @@
 
 
 
-<div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
-    </div>
+
+
+@include('includes.best_sell')
+
+@include('includes.trandy')
 
 </div>
 <!-- Products End -->
