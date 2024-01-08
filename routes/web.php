@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\NewsletterController;
 
 
 
@@ -91,7 +92,6 @@ Route::controller(ProductController::class)->middleware(['admin'])->group(functi
     Route::post('/products/update/{id}','update');
 });
 
-
 Route::controller(CartController::class)->group(function() {
     Route::get('/users/cart','cart');
     Route::post('/users/cart/{id}','add_to_cart'); 
@@ -103,6 +103,11 @@ Route::controller(OrderController::class)->group(function() {
     Route::post('/users/order','add_to_order'); 
     Route::get('/users/orders_by_date/{date}','showOrdersByDate');
 });
+
+Route::controller(NewsletterController::class)->group(function() {
+    Route::post('/','store')->name('news');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
