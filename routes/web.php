@@ -11,6 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\CommentController;
 
 
 
@@ -108,6 +109,10 @@ Route::controller(NewsletterController::class)->group(function() {
     Route::post('/','store')->name('news');
     Route::get('/subs/subs','create')->middleware(['admin']);
     Route::get('/subs/subs/{id}','delete')->middleware(['admin']);
+});
+
+Route::controller(CommentController::class)->group(function() {
+    Route::post('home/details/{product_id}','store')->name('comm');
 });
 
 Route::middleware([

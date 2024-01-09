@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Gender;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Comment;
 use DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,8 @@ class HomeController extends Controller
 
     }
     public function details($id){
-        $details = product::find($id);
+        $details = product::with('comments')->find($id);
+       // $comm = Comment::all();
         return view('home.details',compact('details'));
     }
     public function search(Request $request){

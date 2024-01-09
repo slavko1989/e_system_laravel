@@ -11,12 +11,17 @@ use App\Models\Barnd;
 use App\Models\Gender;
 use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Comment;
 
 
 class Product extends Model
 {
     protected $fillable=['title','text','price','image','new_price','cat_id','brand_id','gender_id','quantity'];
     use HasFactory;
+
+    public function comments() {
+        return $this->hasMany(Comment::class, 'product_id');
+    }
 
 
     public function carts()

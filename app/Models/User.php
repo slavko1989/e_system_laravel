@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Cart;
+use App\Models\Comment;
 
 class User extends Authenticatable
 {
@@ -69,5 +70,9 @@ class User extends Authenticatable
    public function carts()
     {
         return $this->hasMany(Cart::class, 'user_id');
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class, 'user_id');
     }
 }
