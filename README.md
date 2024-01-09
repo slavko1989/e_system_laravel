@@ -2,7 +2,7 @@ This was an e-commerce beginner's work that I have taken over to improve. Still 
 
 Feature for ecommerce app 
 
-Admin panel(crud system for products)	
+Admin panel(crud system for products)<br>
 Admin panel(crud system for categories)	
 Admin panel(crud system for brands)	
 Admin panel(crud system for genders)	
