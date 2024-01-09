@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\Cart;
 use DB;
 use Carbon\Carbon;
+use App\Mail\OrderPlacedMail;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -64,6 +66,11 @@ public function add_to_order(Request $request) {
         
         if ($order->id) {
             $cartItem->delete();
+
+        Mail::send('emails.order_placed', ['order'=>$order], function($message) use ($user) {
+        $message->to($user->email,'bull power it house')->subject('New order');
+        });
+
         }
     }
     
