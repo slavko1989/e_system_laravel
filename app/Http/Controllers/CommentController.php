@@ -37,4 +37,19 @@ class CommentController extends Controller
             return redirect()->back()->with('error', 'You are not login.');
         }
     }
+
+    public function create(){
+
+        return view('admin/users.comments',
+            [
+                'comments'=>Comment::all()
+            ]
+    );
+
+    }
+
+    public function delete($id){
+        Comment::where('id',$id)->firstOrFail()->delete();
+        return redirect()->back()->with('message','Deleted successfully');
+    }
 }

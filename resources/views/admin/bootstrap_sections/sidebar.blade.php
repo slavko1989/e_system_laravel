@@ -29,6 +29,7 @@
     <a href="/products/create" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-envelope"></span> Notifications</a>
     <a href="/users/role" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-user"></span> Role Users</a> 
     <a href="/subs/subs" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-user"></span> Subscribers</a>
+    <a href="/users/comments" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-user"></span> Comments</a>
     <br><br>
   </div>
 </nav>

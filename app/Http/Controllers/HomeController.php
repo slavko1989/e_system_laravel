@@ -33,7 +33,7 @@ class HomeController extends Controller
     }
     public function details($id){
         $details = product::with('comments')->find($id);
-       // $comm = Comment::all();
+       
         return view('home.details',compact('details'));
     }
     public function search(Request $request){

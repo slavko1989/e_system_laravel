@@ -113,6 +113,8 @@ Route::controller(NewsletterController::class)->group(function() {
 
 Route::controller(CommentController::class)->group(function() {
     Route::post('home/details/{product_id}','store')->name('comm');
+    Route::get('/users/comments','create');
+    Route::get('/users/comments/{id}','delete');
 });
 
 Route::middleware([

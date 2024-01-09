@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Gender;
 use App\Models\Order;
 use App\Models\Newsletter;
+use App\Models\Comment;
 
 class AdminController extends Controller
 {
@@ -24,7 +25,8 @@ class AdminController extends Controller
                 'totalPrice' => Product::sum('price'),
                 'users' => User::all(),
                 'totalOrders' => Order::count(),
-                'total_news'=>Newsletter::count()
+                'total_news'=>Newsletter::count(),
+                'total_comments'=>Comment::count()
             ]
         );
     }
