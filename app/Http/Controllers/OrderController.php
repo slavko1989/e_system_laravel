@@ -11,6 +11,8 @@ use App\Models\Cart;
 use DB;
 use Carbon\Carbon;
 use App\Mail\OrderPlacedMail;
+use App\Notifications\OrderNotification;
+
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -67,6 +69,9 @@ public function add_to_order(Request $request) {
         if ($order->id) {
             $cartItem->delete();
 
+        
+        auth()->user()->notify(new OrderNotification($order,$product,$user));
+
         Mail::send('emails.order_placed', ['order'=>$order], function($message) use ($user) {
         $message->to($user->email,'bull power it house')->subject('New order');
         });
@@ -92,6 +97,13 @@ public function best_selling(){
 
     $best_selling = Order::select('product_id')->selectRaw('SUM(order_qty) as total_sold')->groupBy('product_id')->orderByDesc('total_sold')->get();
 }
+
+public function listNotification(){
+
+        $notifications = DB::table('notifications')->get();
+        $totalNotifications = DB::table('notifications')->count();
+        return view('admin/orders.notify' , compact('notifications','totalNotifications'));
+    }
 
 
 }

@@ -103,6 +103,7 @@ Route::controller(OrderController::class)->group(function() {
     Route::get('/users/order','order');
     Route::post('/users/order','add_to_order'); 
     Route::get('/users/orders_by_date/{date}','showOrdersByDate');
+    Route::get('/orders/notify','listNotification')->middleware(['admin']);
 });
 
 Route::controller(NewsletterController::class)->group(function() {
