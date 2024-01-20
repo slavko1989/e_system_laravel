@@ -85,8 +85,9 @@ public function add_to_order(Request $request) {
 
 public function showOrdersByDate(Request $request,$date) {
      $parsedDate = Carbon::createFromFormat('Y-m-d H:i:s', str_replace('+', ' ', $date));
+     $user_id = Auth::user()->id;
 
-    $products = Order::whereDate('created_at', '=' , $parsedDate)
+    $products = Order::where('user_id',$user_id)->whereDate('created_at', '=' , $parsedDate)
         ->with('product')
         ->get();
 
