@@ -19,14 +19,25 @@ class CommentController extends Controller
         $product = Product::find($product_id);
         
 
+
         if($product){
+
 
         $comment = new Comment;
 
         $comment->user_id = $user->id;
         $comment->product_id = $product->id;
         $comment->comment = $request->comment;
-        $comment->parent_comment_id = $request->parent_comment_id;
+        //$comment->parent_comment_id = $request->parent_comment_id;
+
+        $parentCommId = $request->parent_comment_id;
+        if($parentCommId){
+            $parentComment = Comment::find($parentCommId);
+            if($parentComment){
+                $comment->parent_comment_id = $parentCommId;
+            }
+        }
+        
         $comment->save();
 
     }else{

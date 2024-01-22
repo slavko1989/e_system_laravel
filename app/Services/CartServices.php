@@ -46,6 +46,7 @@ class CartServices
     public function addToCart($user, $product, $requestedQty)
 
     {
+
         $existingCartItem = Cart::where('user_id', $user->id)
                                 ->where('product_id', $product->id)
                                 ->first();
@@ -58,7 +59,6 @@ class CartServices
             $cart->product_id = $product->id;
             $cart->qty = $requestedQty;
             $cart->save();
-            
 
             $product->quantity -= $requestedQty;
             $product->save();

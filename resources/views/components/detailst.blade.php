@@ -49,7 +49,7 @@
                     
                     
                     @include('includes.comments')
-                    @include('includes.reply')
+                    
                     
                 </div>
             </div>

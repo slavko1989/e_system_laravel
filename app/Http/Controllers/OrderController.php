@@ -24,25 +24,22 @@ class OrderController extends Controller
 
     public function order(Request $request){
 
-
-    $user = Auth::user();
-    $orders = Order::where('user_id', $user->id)->get();
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->get();
         
     return view('users/order',compact('orders'));
       
-    }
+}
 
 public function add_to_order(Request $request) {
     
-    $user = Auth::user();
 
-    
+    $user = Auth::user();
     $cartItems = Cart::where('user_id', $user->id)->get();
 
     if ($cartItems->isEmpty()) {
         return redirect()->back()->with('error', 'Cart is empty');
     }
-
     
     foreach ($cartItems as $cartItem) {
         $product = Product::find($cartItem->product_id);
