@@ -5,11 +5,10 @@
         <thead>
             <tr>
                 <!-- Ostali zaglavlji -->
-                
-                <th class="text-end">Title</th>
-                <th class="text-end">Text</th>
+
+
                 <th class="text-end">Image</th>
-               
+
                 <th class="text-end">Price</th>
                 <th class="text-end">New price</th>
                 <th class="text-end">Quantity</th>
@@ -21,14 +20,13 @@
             <tr>
                 <!-- Ostala polja -->
 
-                <td class="text-end text-truncate">{{ $prod->title }}</td>
-                <td class="text-end text-truncate">{{ $prod->text }}</td>
+                
                 <td class="text-end">
                     <div style="max-width: 120px; max-height: 120px; overflow: hidden;">
                         <img src="{{ asset('product/'.$prod->image) }}" class="img-fluid" alt="{{ $prod->title }}">
                     </div>
                 </td>
-                
+
                 <td class="text-end text-truncate">{{ $prod->price }}</td>
                 <td class="text-end text-truncate">{{ $prod->new_price }}</td>
                 <td class="text-end text-truncate">{{ $prod->quantity }}</td>

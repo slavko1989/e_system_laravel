@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use App\Models\Category;
-use App\Models\Barnd;
+use App\Models\Brand;
 use App\Models\Gender;
 use App\Models\Order;
 use App\Models\Cart;
@@ -28,7 +28,7 @@ class Product extends Model
     {
         return $this->hasMany(Cart::class, 'product_id');
     }
-    
+
       public function cat(){
         return $this->belongsTo(Category::class,'cat_id','id');
     }

@@ -20,7 +20,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('cart_id');
-
+            $table->string('country');
+            $table->string('city');
+            $table->string('street');
+            $table->integer('status')->default('0');
+            $table->integer('order_qty');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

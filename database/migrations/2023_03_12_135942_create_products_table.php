@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('text');
             $table->integer('price');
-            $table->integer('new_price');
+            $table->integer('new_price')->nullable();
             $table->text('image');
+            $table->integer('quantity');
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('gender_id');
